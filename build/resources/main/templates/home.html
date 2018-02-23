@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
 	<title>College Collective</title>
 	<meta charset="utf-8">
-		<meta name="viewport" content="user-scalable=yes,width=device-width, initial-scale=1">
+		<meta name="viewport" content="user-scalable=yes,width=device-width, initial-scale=1"></meta>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="main.css">
-	<!--<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">-->
+	</meta>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" type="text/css" media="screen" href="../static/css/main.css" data-th-href="@{css/main.css}"></link>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
@@ -19,7 +19,7 @@
 			<div class="container-fluid">
 				<div class="picSquare">
 					<figure>
-						<img src="pics/logo.png" style="height:108px;width:108px;margin-top: 22px;float: left;"/>
+						<img th:src="@{/resources/static/images/logo.png}" style="height:108px;width:108px;margin-top: 22px;float: left;"/>
 						<figcaption>College Collective</figcaption>
 					</figure>
 				</div>
@@ -29,18 +29,19 @@
 
   					<li class="active"><a href="/">Home</a></li>
   					<li class="dropdown"><a href="/Colleges" data-toggle="dropdown" class="dropdown-toggle">Colleges<b class="caret"></b></a>
-  					<ul class="dropdown-menu">
-  						<li><a href="/SeattleUniversity" style="color:rgb(247,148,29);font: corbel;">Seattle University</a></li>
-  						<li><a href="/UniversityOfWashington" style="color:rgb(247,148,29);font: corbel;">University of Washington</a></li>
-  						<li><a href="/SeattlePacificUniversity" style="color:rgb(247,148,29);font: corbel;">Seattle Pacific University</a></li>
-  					</ul>
+	  					<ul class="dropdown-menu">
+	  						<li><a href="/SeattleUniversity" style="color:rgb(247,148,29);font: corbel;">Seattle University</a></li>
+	  						<li><a href="/UniversityOfWashington" style="color:rgb(247,148,29);font: corbel;">University of Washington</a></li>
+	  						<li><a href="/SeattlePacificUniversity" style="color:rgb(247,148,29);font: corbel;">Seattle Pacific University</a></li>
+	  					</ul>
+  					</li>
   					<li class="dropdown"><a href="/About" data-toggle="dropdown" class="dropdown-toggle">About<b class="caret"></b></a>
-  					<ul class="dropdown-menu">
-  						<li><a href="/Company" style="color:rgb(247,148,29);">Company</a></li>
-  						<li><a href="/Leadership" style="color:rgb(247,148,29);">Leadership</a></li>
-  						<li><a href="/News" style="color:rgb(247,148,29);">News</a></li>
-  					</ul>
-  				</li>
+	  					<ul class="dropdown-menu">
+	  						<li><a href="/Company" style="color:rgb(247,148,29);">Company</a></li>
+	  						<li><a href="/Leadership" style="color:rgb(247,148,29);">Leadership</a></li>
+	  						<li><a href="/News" style="color:rgb(247,148,29);">News</a></li>
+	  					</ul>
+	  				</li>
   					<!--<li><a href="#">Page 3</a></li>-->
   					<li><a href="/login" style="float: right;">Login</a></li>
 				</ul>
@@ -48,14 +49,14 @@
 				<div class="col-sm-3 col-md-3 pull-right">
 					<form class="navbar-form" role="search">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+							<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term"></input>
 							<div class="input-group-btn">
 								<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 							</div>
 						</div>
 					</form>
 				</div>
-				</div>
+			</div>
 		</nav>
 	</div>
 	<div id="pictureCarousel" class="carousel slide" data-ride="carousel" data-interval="10000" data-pause="null" style="width:100%;height:auto;margin:auto;background-size:contain;display: block;">
@@ -67,21 +68,21 @@
 
 		<div class="carousel-inner" role="listbox">
 			<div class="active item">
-				<img src="pics/seattleu.png" alt="Seattle University" style="width:100%;height: 500px;">
+				<img th:src="@{../static/resources/images/seattleu.png}" alt="Seattle University" style="width:100%;height: 500px;"></img>
 				<div class="carousel-caption">
 					<p>Seattle University, Lemiuex Library, 4,000 Undergrad</p>
 				</div> <!--height="396.5px" width="1024px"> -->
 			</div>
 
 			<div class="item">
-				<img src="pics/SU com.png" alt="University of Washington" style="width:100%;height: 500px;"> <!--height="396.5px" width="1024px"> -->
+				<img th:src="@{../static/resources/images/SU com.png}" alt="University of Washington" style="width:100%;height: 500px;"></img><!--height="396.5px" width="1024px"> -->
 				<div class="carousel-caption">
 					<p>University of Washington, Quad, 30,000 Undergrad</p>
 				</div>
 			</div>
 
 			<div class="item">
-				<img src="pics/SU quad.png" alt="Seattle Pacific University" style="width:100%;height: 500px;"> <!--height="396.5px" width="1024px"> -->
+				<img th:src="@{../static/resources/images/SU quad.png}" alt="Seattle Pacific University" style="width:100%;height: 500px;"></img> <!--height="396.5px" width="1024px"> -->
 			</div>
 		</div>
 
@@ -135,7 +136,7 @@
 						</div>
 
 						<div data-sec-authorize="isAnonymous()" class="panel-body">
-							<form role="form" data-th-action="${/login}" method="POST">
+							<form role="form" data-th-action="@{/login}">
 								<fieldset>
 									<div class="form-group">
 										<div class="input-group">
@@ -147,13 +148,13 @@
 									<div class="form-group">
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-											<input class="form-control" data-th-placeholder="#{login.prompt.password}" type="password" name="password" value="" required="true" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false">
+											<input class="form-control" data-th-placeholder="#{login.prompt.password}" type="password" name="password" value="" required="true" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false"></input>
 										</div>
 									</div>
 
 									<div class="form-group">
-										<input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}" />
-										<input type="submit" class="btn btn-lg btn-success btn-block" name="submit" data-th-value="#{login.login}" />
+										<input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}"> </input>
+										<input type="submit" class="btn btn-lg btn-success btn-block" name="submit" data-th-value="#{login.login}"></input>
 									</div>
 
 									<!--<div data-th-if="${param.error}" class="alert alert-danger" data-th-text="#{login.login_failure}"></div>
