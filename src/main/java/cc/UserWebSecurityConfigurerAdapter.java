@@ -14,7 +14,7 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/webjars/**", "/webjarsjs/**", "/resources/**");
+		web.ignoring().antMatchers("/webjars/**", "/webjarsjs/**");
 	}
 
 	@Autowired
@@ -32,7 +32,7 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 	protected void configure(HttpSecurity http) throws Exception {
 		http.antMatcher("/**")
 				.authorizeRequests()
-				.antMatchers("/", "/home**", "/login**")
+				.antMatchers("/", "/home**", "/login**", "/resources/**", "/templates/**", "/static/**", "/css/**", "/images/**")
 				.permitAll().anyRequest().authenticated()
 			.and()
 				.formLogin()
