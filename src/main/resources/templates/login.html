@@ -3,13 +3,15 @@
 
 <head>
 	<title>College Collective</title>
-	<meta charset="utf-8">
-		<meta name="viewport" content="user-scalable=yes,width=device-width, initial-scale=1"></meta>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	</meta>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
-	<link rel="stylesheet" type="text/css" href="main.css"></link>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="user-scalable=yes,width=device-width, initial-scale=1"></meta>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+	<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" data-th-src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link> -->
+	<link rel="stylesheet" type="text/css" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" data-th-href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../static/css/main.css" data-th-href="@{/css/main.css}" />
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	<script type='text/javascript' src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" data-th-src="@{/webjars/bootstrap-3.2.0/js/bootstrap.min.js}"></script>
 </head>
 <body>
 	<div class = "nav-wrapper">
@@ -17,7 +19,7 @@
 			<div class="container-fluid">
 				<div class="picSquare">
 					<figure>
-						<img src="../static/resources/images/logo.png" style="height:108px;width:108px;margin-top: 22px;float: left;"/>
+						<img src="../static/resources/images/logo.png" th:src="@{/images/logo.png}" style="height:108px;width:108px;margin-top: 22px;float: left;"/>
 						<figcaption>College Collective</figcaption>
 					</figure>
 				</div>

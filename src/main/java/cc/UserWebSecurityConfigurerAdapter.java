@@ -32,8 +32,8 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 	protected void configure(HttpSecurity http) throws Exception {
 		http.antMatcher("/**")
 				.authorizeRequests()
-				.antMatchers("/", "/home**", "/login**", "/resources/**", "/templates/**", "/static/**", "/css/**", "/images/**")
-				.permitAll().anyRequest().authenticated()
+				.antMatchers("/", "/home**", "/login**", "/resources/**", "/templates/**", "/static/**", "/webjars/**", "/css/**", "/images/**")
+				.permitAll()//.anyRequest()//.authenticated()
 			.and()
 				.formLogin()
 				.loginPage("/login")
