@@ -9,16 +9,16 @@
 
 	<div class="btn-group btn-group-justified">
 		<div class="row">
-			<a id="collegeButton" href="#" class="btn btn-primary">College of Science and Engineering</a>
-			<a id="collegeButton" href="#" class="btn btn-primary">College of Arts and Sciences</a>
-			<a id="collegeButton" href="#" class="btn btn-primary">College of Nursing</a>
-			<a id="collegeButton" href="#" class="btn btn-primary">Albers School of Business and Economics</a>
+			<a id="collegeButton" href="#CSE" class="btn btn-primary">College of Science and Engineering</a>
+			<a id="collegeButton" href="#CAS" class="btn btn-primary">College of Arts and Sciences</a>
+			<a id="collegeButton" href="#CN" class="btn btn-primary">College of Nursing</a>
+			<a id="collegeButton" href="#albers" class="btn btn-primary">Albers School of Business and Economics</a>
 		</div>
 		<div class="row">
-			<a id="collegeButton" href="#" class="btn btn-primary">Matteo Ricci College</a>
-			<a id="collegeButton" href="#" class="btn btn-primary">School of Law</a>
-			<a id="collegeButton" href="#" class="btn btn-primary">School of New and Continuing Students</a>
-			<a id="collegeButton" href="#" class="btn btn-primary">School of Theology and Ministry</a>
+			<a id="collegeButton" href="#MRC" class="btn btn-primary">Matteo Ricci College</a>
+			<a id="collegeButton" href="#SoL" class="btn btn-primary">School of Law</a>
+			<a id="collegeButton" href="#NCS" class="btn btn-primary">School of New and Continuing Students</a>
+			<a id="collegeButton" href="#STM" class="btn btn-primary">School of Theology and Ministry</a>
 		</div>
 	</div>
 
@@ -35,169 +35,36 @@
 		</ol>
 
 		<div class="carousel-inner" role="listbox">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8">
-						<h2 class="page-header">Comments</h2>
-						<section class="comment-list">
-							<!--First Comment-->
-							<article class="row">
-								<div class="col-md-2 col-sm-2 hidden-xs">
-									<figure class="thumbail">
-										<img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-										<figcaption class="text-center">username</figcaption>
-									</figure>
-								</div>
+			<div data-target="#CSE" class="active item">
+				<div data-th-replace="fragments/mainlayout :: commentPage('College of Science and Engineering')"></div>
+			</div>
 
-								<div class="col-md-10 col-sm-10">
-									<div class="panel panel-default arrow left">
-										<div class="panel-body">
-											<header class="text-left">
-												<div class="comment-user"><i class="fa fa-user"></i>That Guy</div>
-												<time class="comment-date" datetime="04-03-2018 3:21"><i class="fa fa-clock-o"></i>Mar 4, 2018</time>
-											</header>
-											<div class="comment-post">
-												<p>
-													Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-												</p>
-											</div>
-											<p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i>reply</a></p>
-										</div>
-									</div>
-								</div>
-							</article>
+			<div data-target="#CAS" class="item">
+				<div data-th-replace="fragments/mainlayout :: commentPage('College of Arts and Sciences')"></div>
+			</div>
 
-							<!-- Second Comment Reply -->
-							<article class="row">
-								<div class="col-md-2 col-sm-2 col-md-offset-1 col-sm-offset-0 hidden-xs">
-									<figure class="thumbnail">
-										<img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-										<figcaption class="text-center">username</figcaption>
-									</figure>
-								</div>
-								<div class="col-md-9 col-sm-9">
-									<div class="panel panel-default arrow left">
-										<div class="panel-heading right">Reply</div>
-										<div class="panel-body">
-											<header class="text-left">
-												<div class="comment-user"><i class="fa fa-user"></i>That Guy</div>
-												<time class="comment-date" datetime="04-03-2018 3:30"><i class="fa fa-clock-o"></i>Mar 4, 2018</time>
-											</header>
-											<div class="comment-post">
-												<p>
-													Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-												</p>
-											</div>
-											<p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i>reply</a></p>
-										</div>
-									</div>
-								</div>
-							</article>
+			<div data-target="#CN" class="item">
+				<div data-th-replace="fragments/mainlayout :: commentPage('College of Nursing')"></div>
+			</div>
 
-							<!-- Third Comment -->
-				          <article class="row">
-				            <div class="col-md-10 col-sm-10">
-				              <div class="panel panel-default arrow right">
-				                <div class="panel-body">
-				                  <header class="text-right">
-				                    <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-				                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-				                  </header>
-				                  <div class="comment-post">
-				                    <p>
-				                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-				                    </p>
-				                  </div>
-				                  <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-				                </div>
-				              </div>
-				            </div>
-				            <div class="col-md-2 col-sm-2 hidden-xs">
-				              <figure class="thumbnail">
-				                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-				                <figcaption class="text-center">username</figcaption>
-				              </figure>
-				            </div>
-				          </article>
-				          <!-- Fourth Comment -->
-				          <article class="row">
-				            <div class="col-md-2 col-sm-2 hidden-xs">
-				              <figure class="thumbnail">
-				                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-				                <figcaption class="text-center">username</figcaption>
-				              </figure>
-				            </div>
-				            <div class="col-md-10 col-sm-10 col-xs-12">
-				              <div class="panel panel-default arrow left">
-				                <div class="panel-body">
-				                  <header class="text-left">
-				                    <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-				                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-				                  </header>
-				                  <div class="comment-post">
-				                    <p>
-				                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-				                    </p>
-				                  </div>
-				                  <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-				                </div>
-				              </div>
-				            </div>
-				          </article>
-				          <!-- Fifth Comment -->
-				          <article class="row">
-				            <div class="col-md-10 col-sm-10">
-				              <div class="panel panel-default arrow right">
-				                <div class="panel-body">
-				                  <header class="text-right">
-				                    <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-				                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-				                  </header>
-				                  <div class="comment-post">
-				                    <p>
-				                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-				                    </p>
-				                  </div>
-				                  <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-				                </div>
-				              </div>
-				            </div>
-				            <div class="col-md-2 col-sm-2 hidden-xs">
-				              <figure class="thumbnail">
-				                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-				                <figcaption class="text-center">username</figcaption>
-				              </figure>
-				            </div>
-				          </article>
-				          <!-- Sixth Comment Reply -->
-				          <article class="row">
-				            <div class="col-md-9 col-sm-9 col-md-offset-1 col-md-pull-1 col-sm-offset-0">
-				              <div class="panel panel-default arrow right">
-				                <div class="panel-heading">Reply</div>
-				                <div class="panel-body">
-				                  <header class="text-right">
-				                    <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-				                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-				                  </header>
-				                  <div class="comment-post">
-				                    <p>
-				                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-				                    </p>
-				                  </div>
-				                  <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-				                </div>
-				              </div>
-				            </div>
-				            <div class="col-md-2 col-sm-2 col-md-pull-1 hidden-xs">
-				              <figure class="thumbnail">
-				                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-				                <figcaption class="text-center">username</figcaption>
-				              </figure>
-				            </div>
-				          </article>
-						</section>
-					</div>
-				</div>
+			<div data-target="#albers" class="item">
+				<div data-th-replace="fragments/mainlayout :: commentPage('Albers School of Business and Economics')"></div>
+			</div>
+
+			<div data-target="#MRC" class="item">
+				<div data-th-replace="fragments/mainlayout :: commentPage('Matteo Ricci College')"></div>
+			</div>
+
+			<div data-target="#SoL" class="item">
+				<div data-th-replace="fragments/mainlayout :: commentPage('School of Law')"></div>
+			</div>
+
+			<div data-target="#NCS" class="item">
+				<div data-th-replace="fragments/mainlayout :: commentPage('School of New and Continuing Students')"></div>
+			</div>
+
+			<div data-target="#STM" class="item">
+				<div data-th-replace="fragments/mainlayout :: commentPage('School of Theology and Ministry')"></div>
 			</div>
 		</div>
 

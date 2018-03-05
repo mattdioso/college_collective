@@ -22,4 +22,9 @@ public class HomeController {
 	public String changeSchools() {
 		return "seattleu";
 	}
+
+	@RequestMapping(value = "/schoolcomments", method = RequestMethod.GET)
+	public String goToComments() {
+		return "schoolcomments";
+	}
 }
