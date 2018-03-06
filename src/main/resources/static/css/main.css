@@ -173,6 +173,11 @@ figure {
 	margin-bottom: 5px;
 }
 
+.comment-list .row .thumbnail {
+	width: 84px;
+	height: 84px;
+}
+
 .comment-list .row {
   margin-bottom: 0px;
 }
