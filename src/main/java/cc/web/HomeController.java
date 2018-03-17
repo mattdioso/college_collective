@@ -27,4 +27,9 @@ public class HomeController {
 	public String goToComments() {
 		return "schoolcomments";
 	}
+
+	@RequestMapping(value = "/schoolfinancial", method=RequestMethod.GET)
+	public String financialInformation() {
+		return "schoolfinancial";
+	}
 }

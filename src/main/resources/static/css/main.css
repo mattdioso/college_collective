@@ -173,6 +173,10 @@ figure {
 	margin-bottom: 5px;
 }
 
+#commentCarousel {
+	width: 1500px;
+}
+
 .comment-list .row .thumbnail {
 	width: 84px;
 	height: 84px;
