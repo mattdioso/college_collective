@@ -29,8 +29,8 @@ public class HomeController {
 		return "schoolcomments";
 	}
 
-	@RequestMapping(value="/schoolcomments?slide={slideID}", method=RequestMethod.GET)
-	public String goToSpecificComments(@PathVariable(value="slideID") String slideID) {
-		return "schoolcomments?slide=" + slideID;
+	@RequestMapping(value = "/schoolfinancial", method=RequestMethod.GET)
+	public String financialInformation() {
+		return "schoolfinancial";
 	}
 }
