@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://thymeleaf.org" class="global desktop">
+
+<head data-th-replace="fragments/mainlayout :: head('Seattle University - Nightlife')"/>
+	
+<body>
+	<div data-th-replace="fragments/mainlayout :: bodyHeader"></div>
+	<div data-th-replace="fragments/mainlayout :: carousel"></div>
+
+	<div class="row" style="margin-left:145px;">
+		<p style="width:100px; height:30px;background-color:rgb(247, 148, 29);color:#fff; border:1px rgb(247, 148, 29);">Nightlife</p>
+		<p style="width:1000px;height:80px;background-color:#fff;color:rgb(247, 148, 29);border:1px rgb(247, 148, 29);">
+			Please describe what school you attended, your experiences there, and what to expect.
+		</p>
+	</div>
+
+	<div data-th-replace="fragments/mainlayout :: commentPage('Nightlife at Seattle University')"></div>
+</body>
+</html>

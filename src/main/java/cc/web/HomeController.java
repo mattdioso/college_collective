@@ -33,4 +33,14 @@ public class HomeController {
 	public String financialInformation() {
 		return "schoolfinancial";
 	}
+
+	@RequestMapping(value = "/schoolnightlife", method = RequestMethod.GET)
+	public String nightlife() {
+		return "schoolnightlife";
+	}
+
+	@RequestMapping(value = "/schoolcampus", method = RequestMethod.GET)
+	public String campus() {
+		return "schoolcampus";
+	}
 }
