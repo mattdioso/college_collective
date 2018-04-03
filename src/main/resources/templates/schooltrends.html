@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" class="global desktop">
+
+<head data-th-replace="fragments/mainlayout :: head('Seattle University - Trending')"/>
+
+<body>
+	<div data-th-replace="fragments/mainlayout :: bodyHeader"></div>
+	<div data-th-replace="fragments/mainlayout :: carousel"></div>
+
+	<div class="row" style="margin-left:145px;">
+		<p style="width:100px;height:30px;background-color:rgb(247, 148, 29);border:1px rgb(247, 148, 29);">Trending</p>
+		<p style="width:100px;height:30px;background-color:rgb(247, 148, 29);border:1px rgb(247, 148, 29);">
+			Please describe the current trends at your school.
+		</p>
+	</div>
+
+	<div data-th-replace="fragments/mainlayout :: commentPage('Trends at Seattle University')"></div>
+</body>
+</html>

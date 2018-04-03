@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org" class="global desktop">
+<head data-th-replace="fragments/mainlayout :: head('Seattle University - Transit')"/>
+
+<body>
+	<div data-th-replace="fragments/mainlayout :: bodyHeader"></div>
+	<div data-th-replace="fragments/mainlayout :: carousel"></div>
+
+	<div class="row" style="margin-left:145px;">
+		<p style="width:100px; height:30px;background-color:rgb(247, 148, 29);color:#fff; border:1px rgb(247, 148, 29);">Transit</p>
+		<p style="width:1000px;height:80px;background-color:#fff;color:rgb(247, 148, 29);border:1px rgb(247, 148, 29);">
+			Please describe the means of transporation that you use, how that works out for you, and the best way these options can be utilized.
+		</p>
+	</div>
+
+	<div data-th-replace="fragments/mainlayout :: commentPage('Transit at Seattle University')"></div>
+</body>
+</html>

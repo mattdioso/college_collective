@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org" class="global desktop">
+<head data-th-replace="fragments/mainlayout :: head('Seattle University - Social Life')"/>
+
+<body>
+	<div data-th-replace="fragments/mainlayout :: bodyHeader"></div>
+	<div data-th-replace="fragments/mainlayout :: carousel"></div>
+
+	<div class="row" style="margin-left:145px;">
+		<p style="width:100px; height:30px;background-color:rgb(247, 148, 29);color:#fff; border:1px rgb(247, 148, 29);">Social</p>
+		<p style="width:1000px;height:80px;background-color:#fff;color:rgb(247, 148, 29);border:1px rgb(247, 148, 29);">
+			Please describe the social life at Seattle University.
+		</p>
+	</div>
+
+	<div data-th-replace="fragments/mainlayout :: commentPage('Social Life at Seattle University')"></div>
+</body>
+</html>

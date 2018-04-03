@@ -19,28 +19,5 @@ public class HomeController {
 		return "login";
 	}
 
-	@RequestMapping(value = "/seattleu", method = RequestMethod.GET)
-	public String changeSchools() {
-		return "seattleu";
-	}
-
-	@RequestMapping(value = "/schoolcomments", method = RequestMethod.GET)
-	public String goToComments() {
-		return "schoolcomments";
-	}
-
-	@RequestMapping(value = "/schoolfinancial", method=RequestMethod.GET)
-	public String financialInformation() {
-		return "schoolfinancial";
-	}
-
-	@RequestMapping(value = "/schoolnightlife", method = RequestMethod.GET)
-	public String nightlife() {
-		return "schoolnightlife";
-	}
-
-	@RequestMapping(value = "/schoolcampus", method = RequestMethod.GET)
-	public String campus() {
-		return "schoolcampus";
-	}
+		
 }
