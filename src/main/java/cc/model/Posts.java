@@ -2,21 +2,34 @@ package cc.model;
 
 import java.util.Date;
 
-public class Posts {
-	private String post_id;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
+import javax.persistence.Table;
+import javax.persistence.Id;
+
+@Entity
+public class Posts extends BaseObject {
+	
+	@Column(nullable=false)
 	private String thread_id;
+	
+	@Column(nullable=false)
 	private String user_id;
+	
+	@Lob
 	private String content;
+	
+	@Column
 	private Date date_created;
-
-	public void setPostID(String postID) {
-		this.post_id = postID;
-	}
-
-	public String getPostID() {
-		return post_id;
-	}
-
+	
 	public void setthreadID(String postID) {
 		this.thread_id = postID;
 	}

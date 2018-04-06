@@ -1,17 +1,27 @@
 package cc.model;
 
-public class Topic {
-	private String topic_id;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
+import javax.persistence.Table;
+import javax.persistence.Id;
+
+@Entity
+public class Topic extends BaseObject {
+
+	@Column(nullable=false)	
 	private String topic_name;
+
+	@Column(nullable=false)
 	private String school_id;
 
-	public void setTopicID(String id) {
-		this.topic_id = id;
-	}
-
-	public String getTopicId() {
-		return topic_id;
-	}
 
 	public void setTopicName(String name) {
 		this.topic_name=name;

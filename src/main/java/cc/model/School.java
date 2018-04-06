@@ -2,25 +2,36 @@ package cc.model;
 
 import java.util.List;
 
-public class School {
-	private String school_id;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
+import javax.persistence.Table;
+import javax.persistence.Id;
+
+@Entity
+public class School extends BaseObject {
+
+	@Column(nullable=false)
 	private String school_name;
+
+	@OneToMany(mappedBy="schools", cascade= {CascadeType.ALL})
+	@OrderColumn(name="school_name")
 	private List<School> schools;
 
-	public String getSchoolId() {
-		return school_id;
-	}
-
-	public void setSchoolId(String Id) {
-		school_id=Id;
-	}
 
 	public String getSchoolName() {
 		return school_name;
 	}
 
 	public void setSchoolName(String name) {
-		school_name = name;
+		this.school_name = name;
 	} 
 
 	public List<School> getSchools() {
