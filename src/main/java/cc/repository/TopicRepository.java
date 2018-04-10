@@ -8,5 +8,5 @@ import org.springframework.data.repository.history.RevisionRepository;
 import cc.model.Topic;
 
 public interface TopicRepository extends PagingAndSortingRepository<Topic, String> {
-	//public List<Topic> findByID(String school_id);
+	public List<Topic> findByTopicName(String topicName);
 }

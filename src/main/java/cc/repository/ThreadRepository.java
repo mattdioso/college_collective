@@ -9,5 +9,6 @@ import cc.model.Threads;
 
 
 public interface ThreadRepository extends PagingAndSortingRepository<Threads, String> {
-	//public List<Threads> findBySchool_IDAndTopic_ID(String school_id, String topic_id);
+	public List<Threads> findAllByOrderByDateCreated();
+	public List<Threads> findBySchoolNameAndTopicName(String schoolName, String topicName);
 }

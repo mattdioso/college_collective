@@ -1,0 +1,76 @@
+spring:
+  profiles:
+    active: CC_test
+    #active: dev-mysql
+    #active: dev-memDB
+    #active: dev-persistent
+
+  resources.chain.enabled: true
+  data:
+    rest:
+      basePath: /rest/
+  jpa:
+    database: H2
+    hibernate:
+      ddl-auto: update
+      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    show-sql: true
+    open-in-view: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+    joda-date-time-format: yyyy-MM-dd'T'HH:mm:ss.SSSZ
+  thymeleaf:
+    #mode: HTML
+    cache: false
+    enabled: true
+  mustache:
+    enabled: true
+    #view-names: reportpreview
+security:
+  basic:
+    enabled: false
+endpoints:
+  health:
+    sensitive:false
+management:
+  add-application-context-header: false
+  contextPath: /actuator
+  security:
+    enabled: false
+  trace.include: request-headers,response-headers,errors,path-info,path-translated,context-path,user-principal,parameters,query-string,auth-type,remote-address,session-id,remote-user
+  
+logging:
+  level:
+    ROOT: INFO
+    org.docx4j: INFO
+    cc: INFO
+    net.sf.hibernate.type: INFO
+
+embedded.initializer.enabled: true
+---
+spring:
+  profiles: CC_test
+  datasource:
+    url: jdbc:mysql://localhost:3306/CC_test
+    driverClassName: com.mysql.jdbc.Driver
+    username: matt
+    password: Univega1986
+    initialize: false
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: MYSQL
+    properties:
+          hibernate:
+            globally_quoted_identifiers: true
+logging:
+  file: ${APP_HOME:.}/college_collective.log
+  level:
+    ROOT: WARN
+    org.docx4j: WARN
+    com.astechconsulting: WARN
+    net.sf.hibernate.type: WARN

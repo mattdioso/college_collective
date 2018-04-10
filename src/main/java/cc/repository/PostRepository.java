@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.history.RevisionRepository;
 
-import cc.model.School;
+import cc.model.Posts;
 
-
-public interface SchoolRepository extends PagingAndSortingRepository<School, String> {
-	public List<School> findAllByOrderBySchoolName();
+public interface PostRepository extends PagingAndSortingRepository<Posts, String> {
+	public List<Posts> findAllByOrderByDateCreated();
 }

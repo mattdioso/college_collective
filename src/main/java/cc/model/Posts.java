@@ -20,7 +20,9 @@ import org.hibernate.envers.Audited;
 @Entity
 @Audited
 public class Posts extends BaseObject {
-	
+	@Column(name = "postName", nullable = false)
+	private String postName;
+
 	@Column(name = "threadName", nullable=false)
 	private String threadName;
 	
@@ -39,6 +41,14 @@ public class Posts extends BaseObject {
 
 	public String getThreadName() {
 		return threadName;
+	}
+
+	public void setPostName(String postName) {
+		this.postName=postName;
+	}
+
+	public String getPostName() {
+		return postName;
 	}
 
 	public void setUserName(String userName) {
