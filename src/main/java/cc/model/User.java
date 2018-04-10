@@ -13,40 +13,43 @@ import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
+import org.hibernate.envers.Audited;
+
 @Entity
+@Audited
 public class User extends BaseObject {
 
-	@Column(nullable=false)	
-	private String user_name;
+	@Column(name= "userName", nullable=false)	
+	private String userName;
 	
-	@Column(nullable=false)
-	private String user_school;
+	@Column(name = "userSchool", nullable=false)
+	private String userSchool;
 	
-	@Column
-	private String user_email;
+	@Column(name = "userEmail")
+	private String userEmail;
 
 
 	public void setUsername(String name) {
-		user_name=name;
+		this.userName=name;
 	}
 
 	public String getUsername() {
-		return user_name;
+		return userName;
 	}
 
 	public void setUserSchool(String school) {
-		user_school=school;
+		this.userSchool=school;
 	}
 
 	public String getUserSchool() {
-		return user_school;
+		return userSchool;
 	}
 
 	public void setUserEmail(String email) {
-		user_email = email;
+		this.userEmail = email;
 	}
 
 	public String getUserEmail() {
-		return user_email;
+		return userEmail;
 	}
 }

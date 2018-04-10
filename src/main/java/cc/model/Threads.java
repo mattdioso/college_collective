@@ -16,58 +16,60 @@ import javax.persistence.Id;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.envers.Audited;
+
 import cc.model.Posts;
 
 @Entity
+@Audited
 public class Threads extends BaseObject {
 	
-	@Column(nullable=false)
-	private String topic_id;
+	@Column(name = "topicName", nullable=false)
+	private String topicName;
 
-	@Column(nullable=false)
-	private String school_id;
+	@Column(name = "schoolName", nullable=false)
+	private String schoolName;
 
-	@Column
-	private Date date_created;
+	@Column(name = "dateCreated")
+	private Date dateCreated;
 
-	@Column(nullable=false)
-	private String user_id;
+	@Column(name = "userName", nullable=false)
+	private String userName;
 
-	@OneToMany(mappedBy="user_id", cascade= {CascadeType.ALL})
-	@OrderColumn(name="date_created")
+	@OneToMany(mappedBy="userName", cascade= {CascadeType.ALL})
+	@OrderColumn(name="dateCreated")
 	private List<Posts> posts;
 
-
-	public String getTopicID() {
-		return topic_id;
+	public String getTopicName() {
+		return topicName;
 	}
 
-	public void setTopicID(String id) {
-		this.topic_id=id;
+	public void setTopicName(String name) {
+		this.topicName=name;
 	}
 
-	public String getSchoolID() {
-		return school_id;
+	public String getSchoolName() {
+		return schoolName;
 	}
 
-	public void setSchoolID(String id) {
-		this.school_id=id;
+	public void setSchoolName(String name) {
+		this.schoolName=name;
 	}
 
-	public String getUserID() {
-		return user_id;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUserID(String id) {
-		this.user_id=id;
+	public void setUserName(String name) {
+		this.userName=name;
 	}
 
 	public Date getDateCreated() {
-		return date_created;
+		return dateCreated;
 	}
 
 	public void setDateCreated(Date date) {
-		this.date_created=date;
+		this.dateCreated=date;
 	}
 
 	public void setPosts(List<Posts> posts) {

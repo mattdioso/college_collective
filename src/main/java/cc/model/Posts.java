@@ -15,35 +15,38 @@ import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
+import org.hibernate.envers.Audited;
+
 @Entity
+@Audited
 public class Posts extends BaseObject {
 	
-	@Column(nullable=false)
-	private String thread_id;
+	@Column(name = "threadName", nullable=false)
+	private String threadName;
 	
-	@Column(nullable=false)
-	private String user_id;
+	@Column(name = "userName", nullable=false)
+	private String userName;
 	
 	@Lob
 	private String content;
 	
-	@Column
-	private Date date_created;
-	
-	public void setthreadID(String postID) {
-		this.thread_id = postID;
+	@Column(name = "dateCreated")
+	private Date dateCreated;
+
+	public void setThreadName(String threadName) {
+		this.threadName=threadName;
 	}
 
-	public String getThreadID() {
-		return thread_id;
+	public String getThreadName() {
+		return threadName;
 	}
 
-	public void setUserID(String postID) {
-		this.user_id = postID;
+	public void setUserName(String userName) {
+		this.userName=userName;
 	}
 
-	public String getUserID() {
-		return user_id;
+	public String getUserName() {
+		return userName;
 	}
 
 	public void setPostContent(String postContent) {
@@ -55,10 +58,10 @@ public class Posts extends BaseObject {
 	}
 
 	public void setDateCreated(Date dateCreated) {
-		this.date_created = dateCreated;
+		this.dateCreated = dateCreated;
 	}
 
 	public Date getDateCreated() {
-		return date_created;
+		return dateCreated;
 	}
 }

@@ -13,29 +13,32 @@ import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
+import org.hibernate.envers.Audited;
+
 @Entity
+@Audited
 public class Topic extends BaseObject {
 
-	@Column(nullable=false)	
-	private String topic_name;
+	@Column(name = "topicName", nullable=false)	
+	private String topicName;
 
-	@Column(nullable=false)
-	private String school_id;
+	@Column(name = "schoolName", nullable=false)
+	private String schoolName;
 
 
 	public void setTopicName(String name) {
-		this.topic_name=name;
+		this.topicName=name;
 	}
 
 	public String getTopicName() {
-		return topic_name;
+		return topicName;
 	}
 
-	public void setSchoolID(String id) {
-		this.school_id = id;
+	public void setSchoolName(String name) {
+		this.schoolName=name;
 	}
 
-	public String getSchoolID() {
-		return school_id;
+	public String getSchoolName() {
+		return schoolName;
 	}
 }

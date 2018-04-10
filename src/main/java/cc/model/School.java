@@ -15,30 +15,33 @@ import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
+import org.hibernate.envers.Audited;
+
 @Entity
+@Audited
 public class School extends BaseObject {
 
-	@Column(nullable=false)
-	private String school_name;
+	@Column(name = "schoolName", nullable=false)
+	private String schoolName;
 
-	@OneToMany(mappedBy="schools", cascade= {CascadeType.ALL})
-	@OrderColumn(name="school_name")
-	private List<School> schools;
+	//@OneToMany(mappedBy="schools", cascade= {CascadeType.ALL})
+	//@OrderColumn(name="schoolName")
+	//private List<School> schools;
 
 
 	public String getSchoolName() {
-		return school_name;
+		return schoolName;
 	}
 
 	public void setSchoolName(String name) {
-		this.school_name = name;
+		this.schoolName = name;
 	} 
 
-	public List<School> getSchools() {
+	/*public List<School> getSchools() {
 		return schools;
 	}
 
 	public void setSchools(List<School> schools) {
 		this.schools=schools;
-	}
+	}*/
 }

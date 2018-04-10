@@ -14,7 +14,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @EnableAutoConfiguration
+@EnableJpaRepositories("cc.repository")//repositoryFactoryBeanClass = EnversRevisionRepositoryFactoryBean.class)
 @SpringBootApplication
+@EnableJpaAuditing
 public class CollegeCollectiveApplication extends SpringBootServletInitializer {
 
 	@Override
