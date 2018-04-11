@@ -27,7 +27,7 @@ public abstract class BaseObject {
 	@Id
 	@GeneratedValue(generator = "system-uuid")
 	@GenericGenerator(name = "system-uuid", strategy = "uuid")
-	@Column(name = "id", updatable = false, nullable = false, length=32)
+	@Column(name = "id", updatable = false, nullable = false)
 	protected String id;
 
 	@Version

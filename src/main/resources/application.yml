@@ -72,5 +72,5 @@ logging:
   level:
     ROOT: WARN
     org.docx4j: WARN
-    com.astechconsulting: WARN
+    cc: WARN
     net.sf.hibernate.type: WARN
