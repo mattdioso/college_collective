@@ -10,4 +10,5 @@ import cc.model.School;
 
 public interface SchoolRepository extends PagingAndSortingRepository<School, String> {
 	public List<School> findAllByOrderBySchoolName();
+	public School findBySchoolName(String schoolName);
 }
