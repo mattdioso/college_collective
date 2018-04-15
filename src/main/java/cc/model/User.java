@@ -16,7 +16,6 @@ import javax.persistence.Id;
 import org.hibernate.envers.Audited;
 
 @Entity
-@Audited
 public class User extends BaseObject {
 
 	@Column(name= "userName", nullable=false)	
@@ -25,7 +24,7 @@ public class User extends BaseObject {
 	@Column(name = "userSchool", nullable=false)
 	private String userSchool;
 	
-	@Column(name = "userEmail")
+	@Column(name = "userEmail", nullable=false)
 	private String userEmail;
 
 

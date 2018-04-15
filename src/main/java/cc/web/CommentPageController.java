@@ -8,6 +8,7 @@ import cc.repository.TopicRepository;
 import cc.repository.SchoolRepository;
 import cc.repository.ThreadRepository;
 import cc.repository.PostRepository;
+import cc.repository.UserRepository;
 
 import java.util.List;
 import java.util.UUID;
@@ -18,19 +19,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.stereotype.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.ui.Model;
 
 
 @Controller
 public class CommentPageController {
 
+	@Autowired
 	PostRepository postRepository;
 
+	@Autowired
 	TopicRepository topicRepository;
 
+	@Autowired
 	SchoolRepository schoolRepository;
 
+	@Autowired
 	ThreadRepository threadRepository; 
+
+	@Autowired
+	UserRepository userRepository;
 
 	@RequestMapping(path = "/seattleu/{topic}", method=RequestMethod.GET)
 	public String commentPage(Model model, @PathVariable("topic") String topic) {

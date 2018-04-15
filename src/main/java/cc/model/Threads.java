@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import java.util.Date;
 import java.util.List;
@@ -22,16 +24,13 @@ import cc.model.Posts;
 
 @Entity
 @Audited
-public class Threads extends BaseObject {
+public class Threads extends AuditObject {
 	
 	@Column(name = "topicName", nullable=false)
 	private String topicName;
 
 	@Column(name = "schoolName", nullable=false)
 	private String schoolName;
-
-	@Column(name = "dateCreated")
-	private Date dateCreated;
 
 	@Column(name = "userName", nullable=false)
 	private String userName;
@@ -62,14 +61,6 @@ public class Threads extends BaseObject {
 
 	public void setUserName(String name) {
 		this.userName=name;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public void setDateCreated(Date date) {
-		this.dateCreated=date;
 	}
 
 	public void setPosts(List<Posts> posts) {

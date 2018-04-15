@@ -14,12 +14,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.envers.Audited;
 
 @Entity
 @Audited
-public class Posts extends BaseObject {
+public class Posts extends AuditObject {
 	@Column(name = "postName", nullable = false)
 	private String postName;
 
@@ -31,9 +33,6 @@ public class Posts extends BaseObject {
 	
 	@Lob
 	private String content;
-	
-	@Column(name = "dateCreated")
-	private Date dateCreated;
 
 	public void setThreadName(String threadName) {
 		this.threadName=threadName;
@@ -65,13 +64,5 @@ public class Posts extends BaseObject {
 
 	public String getPostContent() {
 		return content;
-	}
-
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
 	}
 }

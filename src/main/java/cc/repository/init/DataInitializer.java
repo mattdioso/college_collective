@@ -86,32 +86,24 @@ public class DataInitializer implements InitializingBean {
 	@Async
 	public void initialize() {
 		SecurityContextHolder.setContext(createSecurityContext());
-		Connection connection = db.connect();
-		try {
+		//Connection connection = db.connect();
+		/*try {
 			ResultSet rs = null;
 			rs = getSchools(connection);
 			while (rs.next()) {
 				School school = new School();
-				String id = rs.getString("id");
-				String name = rs.getString("school_name");
-				school.setId(id);
-				school.setSchoolName(name);
-				School q = schoolRepository.findBySchoolName(name);
-				if (q != null)
-					schoolRepository.save(school);
+				school.setId(rs.getString("id"));
+				school.setSchoolName(rs.getString("school_name"));
+				schoolRepository.save(school);
 			}
 
 			rs = getUsers(connection);
 			while (rs.next()) {
 				User user = new User();
-				String id = rs.getString("id");
-				String email = rs.getString("user_email");
-				String name = rs.getString("user_name");
-				String school = rs.getString("user_school");
-				user.setId(id);
-				user.setUserEmail(email);
-				user.setUsername(name);
-				user.setUserSchool(school);
+				user.setId(rs.getString("id"));
+				user.setUserEmail(rs.getString("user_email"));
+				user.setUsername(rs.getString("user_name"));
+				user.setUserSchool(rs.getString("user_school"));
 				userRepository.save(user);
 			}
 
@@ -150,7 +142,7 @@ public class DataInitializer implements InitializingBean {
 				e.printStackTrace();
 		} finally {
 			db.disconnect(connection);
-		}
+		}*/
 	}
 
 	private SecurityContext createSecurityContext() {

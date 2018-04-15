@@ -18,7 +18,6 @@ import javax.persistence.Id;
 import org.hibernate.envers.Audited;
 
 @Entity
-@Audited
 public class School extends BaseObject {
 
 	@Column(name = "schoolName", nullable=false)
