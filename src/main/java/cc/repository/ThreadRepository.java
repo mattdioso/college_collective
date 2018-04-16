@@ -10,5 +10,5 @@ import cc.model.Threads;
 
 public interface ThreadRepository extends RevisionRepository<Threads, String, Integer>, PagingAndSortingRepository<Threads, String> {
 	public List<Threads> findAllByOrderByDateCreated();
-	public List<Threads> findBySchoolNameAndTopicName(String schoolName, String topicName);
+	//public List<Threads> findBySchoolIDAndTopicID(String schoolID, String topicID);
 }

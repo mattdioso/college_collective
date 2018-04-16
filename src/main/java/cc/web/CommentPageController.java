@@ -43,7 +43,11 @@ public class CommentPageController {
 	UserRepository userRepository;
 
 	@RequestMapping(path = "/seattleu/{topic}", method=RequestMethod.GET)
-	public String commentPage(Model model, @PathVariable("topic") String topic) {
+	public String commentPage(Model model, @PathVariable("topic") String topic) {//, @PathVariable("id") String schoolID) {
+		//School school = schoolRepository.findOne(schoolID);
+		//model.addAttribute("selectedSchool", school);
+		model.addAttribute("schools", schoolRepository.findAllByOrderBySchoolName());
+		//model.addAttribute("topics", topicRepository.findAllBySchoolID(school));
 		model.addAttribute("threads", threadRepository.findAllByOrderByDateCreated());
 		model.addAttribute("posts", postRepository.findAllByOrderByDateCreated());
 		return topic;

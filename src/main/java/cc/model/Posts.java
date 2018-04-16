@@ -16,6 +16,12 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
+
+import cc.model.Threads;
+import cc.model.User;
+
+import java.util.List;
 
 import org.hibernate.envers.Audited;
 
@@ -25,21 +31,47 @@ public class Posts extends AuditObject {
 	@Column(name = "postName", nullable = false)
 	private String postName;
 
-	@Column(name = "threadName", nullable=false)
-	private String threadName;
+	/*@Column(name = "threadID", nullable=false)
+	@ManyToOne
+	@JoinColumn(name="id", nullable=false)
+	private String threadID;*/
 	
-	@Column(name = "userName", nullable=false)
-	private String userName;
+	@ManyToOne
+	@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
+	private Threads thread;
+
+	@ManyToOne
+	@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
+	private User user;
+
+	/*@Column(name = "userID", nullable=false)
+	private String userID;*/
 	
 	@Lob
 	private String content;
 
-	public void setThreadName(String threadName) {
-		this.threadName=threadName;
+	/*public void setThreadID(String threadName) {
+		this.threadID=threadName;
 	}
 
-	public String getThreadName() {
-		return threadName;
+	public String getThreadID() {
+		return threadID;
+	}*/
+
+	public void setThread(Threads thread) {
+		this.thread = thread;
+	}
+
+	public Threads getThread() {
+		return thread;
+	}
+
+	public void setUser(User user) {
+		this.user=user;
+	}
+
+	public User getUser() {
+		return user;
 	}
 
 	public void setPostName(String postName) {
@@ -50,13 +82,13 @@ public class Posts extends AuditObject {
 		return postName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName=userName;
+	/*public void setUserID(String userName) {
+		this.userID=userName;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
+	public String getUserID() {
+		return userID;
+	}*/
 
 	public void setPostContent(String postContent) {
 		this.content = postContent;

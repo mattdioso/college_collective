@@ -15,18 +15,22 @@ import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
+import cc.model.Topic;
+
+import java.util.List;
+
 import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 public class School extends BaseObject {
 
 	@Column(name = "schoolName", nullable=false)
 	private String schoolName;
 
-	//@OneToMany(mappedBy="schools", cascade= {CascadeType.ALL})
-	//@OrderColumn(name="schoolName")
-	//private List<School> schools;
-
+	@OneToMany(mappedBy="school", cascade= {CascadeType.ALL})
+	@OrderColumn(name="topicName")
+	private List<Topic> topics;
 
 	public String getSchoolName() {
 		return schoolName;
@@ -36,11 +40,11 @@ public class School extends BaseObject {
 		this.schoolName = name;
 	} 
 
-	/*public List<School> getSchools() {
-		return schools;
+	public List<Topic> getTopics() {
+		return topics;
 	}
 
-	public void setSchools(List<School> schools) {
-		this.schools=schools;
-	}*/
+	public void setTopics(List<Topic> topics) {
+		this.topics=topics;
+	}
 }

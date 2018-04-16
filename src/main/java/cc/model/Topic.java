@@ -12,18 +12,40 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+
+import java.util.List;
+
+import cc.model.Threads;
+import cc.model.School;
 
 import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 public class Topic extends BaseObject {
 
 	@Column(name = "topicName", nullable=false)	
 	private String topicName;
 
-	@Column(name = "schoolName", nullable=false)
-	private String schoolName;
+	/*@Column(name = "schoolID", nullable=false)
+	private String schoolID;*/
 
+	@ManyToOne
+	@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
+	private School school;
+
+	@OneToMany(mappedBy="topic", cascade= {CascadeType.ALL})
+	@OrderColumn(name="dateCreated")
+	private List<Threads> threads;
+
+	public void setSchool(School school) {
+		this.school=school;
+	}
+
+	public School getSchool() {
+		return school;
+	}
 
 	public void setTopicName(String name) {
 		this.topicName=name;
@@ -33,11 +55,19 @@ public class Topic extends BaseObject {
 		return topicName;
 	}
 
-	public void setSchoolName(String name) {
-		this.schoolName=name;
+	/*public void setSchoolID(String name) {
+		this.schoolID=name;
 	}
 
-	public String getSchoolName() {
-		return schoolName;
+	public String getSchoolID() {
+		return schoolID;
+	}*/
+
+	public List<Threads> getThreads() {
+		return threads;
+	}
+
+	public void setThreads(List<Threads> threads) {
+		this.threads=threads;
 	}
 }

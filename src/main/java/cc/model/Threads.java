@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
 
 import java.util.Date;
 import java.util.List;
@@ -21,46 +22,71 @@ import java.util.List;
 import org.hibernate.envers.Audited;
 
 import cc.model.Posts;
+import cc.model.Topic;
+import cc.model.User;
 
 @Entity
 @Audited
 public class Threads extends AuditObject {
 	
-	@Column(name = "topicName", nullable=false)
-	private String topicName;
+	/*@Column(name = "topicID", nullable=false)
+	private String topicID;*/
 
-	@Column(name = "schoolName", nullable=false)
-	private String schoolName;
+	@Column(name = "schoolID", nullable=false)
+	private String schoolID;
 
-	@Column(name = "userName", nullable=false)
-	private String userName;
+	@Column(name = "userID", nullable=false)
+	private String userID;
 
-	@OneToMany(mappedBy="userName", cascade= {CascadeType.ALL})
+	@ManyToOne
+	@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
+	private Topic topic;
+
+	@ManyToOne
+	@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
+	private User user;
+
+	@OneToMany(mappedBy="thread", cascade= {CascadeType.ALL})
 	@OrderColumn(name="dateCreated")
 	private List<Posts> posts;
 
-	public String getTopicName() {
-		return topicName;
+	public Topic getTopic() {
+		return topic;
 	}
 
-	public void setTopicName(String name) {
-		this.topicName=name;
+	public void setTopic(Topic topic) {
+		this.topic=topic;
 	}
 
-	public String getSchoolName() {
-		return schoolName;
+	public User getUser() {
+		return user;
 	}
 
-	public void setSchoolName(String name) {
-		this.schoolName=name;
+	public void setUser(User user) {
+		this.user=user;
+	}
+	/*public String getTopicID() {
+		return topicID;
 	}
 
-	public String getUserName() {
-		return userName;
+	public void setTopicID(String name) {
+		this.topicID=name;
+	}*/
+
+	public String getSchoolID() {
+		return schoolID;
 	}
 
-	public void setUserName(String name) {
-		this.userName=name;
+	public void setSchoolID(String name) {
+		this.schoolID=name;
+	}
+
+	public String getUserID() {
+		return userID;
+	}
+
+	public void setUserID(String name) {
+		this.userID=name;
 	}
 
 	public void setPosts(List<Posts> posts) {

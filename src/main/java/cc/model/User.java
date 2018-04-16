@@ -13,9 +13,15 @@ import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
+import cc.model.Threads;
+import cc.model.Posts;
+
+import java.util.List;
+
 import org.hibernate.envers.Audited;
 
 @Entity
+@Audited
 public class User extends BaseObject {
 
 	@Column(name= "userName", nullable=false)	
@@ -27,6 +33,13 @@ public class User extends BaseObject {
 	@Column(name = "userEmail", nullable=false)
 	private String userEmail;
 
+	@OneToMany(mappedBy="user", cascade= {CascadeType.ALL})
+	@OrderColumn(name="dateCreated")
+	private List<Threads> threads;
+
+	@OneToMany(mappedBy="user", cascade= {CascadeType.ALL})
+	@OrderColumn(name="dateCreated")
+	private List<Posts> posts;
 
 	public void setUsername(String name) {
 		this.userName=name;
@@ -50,5 +63,21 @@ public class User extends BaseObject {
 
 	public String getUserEmail() {
 		return userEmail;
+	}
+
+	public void setThreads(List<Threads> threads) {
+		this.threads=threads;
+	}
+
+	public List<Threads> getThreads() {
+		return threads;
+	}
+
+	public void setPosts(List<Posts> posts) {
+		this.posts=posts;
+	}
+
+	public List<Posts> getPosts() {
+		return posts;
 	}
 }
