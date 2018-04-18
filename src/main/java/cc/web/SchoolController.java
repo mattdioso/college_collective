@@ -21,12 +21,12 @@ public class SchoolController {
 	@Autowired
 	SchoolRepository schoolRepository;
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/school/{id}", method = RequestMethod.GET)
 	public String changeSchools(Model model, @PathVariable("id") String id) {
 		School school = schoolRepository.findOne(id);
 		model.addAttribute("selectedSchool", school);
 		model.addAttribute("schools", schoolRepository.findAllByOrderBySchoolName());
-		return "seattleu";
+		return "school";
 	}
 
 	/*@RequestMapping(value = "/schoolcomments", method = RequestMethod.GET)

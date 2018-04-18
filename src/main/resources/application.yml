@@ -12,7 +12,7 @@ spring:
   jpa:
     database: H2
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
     show-sql: true
     open-in-view: true
@@ -53,7 +53,7 @@ embedded.initializer.enabled: true
 spring:
   profiles: CC_test
   datasource:
-    url: jdbc:mysql://localhost:3306/CC_test
+    url: jdbc:mysql://localhost:3306/CC_test?useLegacyDatetimeCode=false&serverTimezone=PST
     driverClassName: com.mysql.jdbc.Driver
     username: matt
     password: Univega1986
@@ -61,7 +61,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     database: MYSQL
     properties:

@@ -21,12 +21,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public abstract class AuditObject extends BaseObject {
 
 	@CreatedDate
-	@Column(updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	protected Date dateCreated;
+	@Column(updatable = false)//, columnDefinition="DATETIME")
+	@Temporal(TemporalType.TIME)
+	private Date dateCreated;
 
 	@LastModifiedDate
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIME)
 	protected Date lastModifiedDate;
 
 	@LastModifiedBy
@@ -39,11 +39,11 @@ public abstract class AuditObject extends BaseObject {
 	public AuditObject() {
 	}
 
-	public Date getCreatedDate() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setCreatedDate(Date createdDate) {
+	public void setDateCreated(Date createdDate) {
 		this.dateCreated = createdDate;
 	}
 

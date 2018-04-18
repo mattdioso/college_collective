@@ -41,6 +41,14 @@ public class User extends BaseObject {
 	@OrderColumn(name="dateCreated")
 	private List<Posts> posts;
 
+	public User() {}
+
+	public User(String userName, String userSchool, String userEmail) {
+		this.userName=userName;
+		this.userSchool=userSchool;
+		this.userEmail=userEmail;
+	}
+
 	public void setUsername(String name) {
 		this.userName=name;
 	}

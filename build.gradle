@@ -63,7 +63,8 @@ dependencies {
 	compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.0.RELEASE")
 	testCompile("junit:junit")
 
-	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.43'
+	compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.6'
+	//compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.43'
 }
 
 sourceSets {

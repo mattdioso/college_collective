@@ -3,6 +3,10 @@ package cc.repository.init;
 import java.io.IOException;
 import java.util.*;
 
+import java.util.List;
+import java.util.UUID;
+import java.util.ArrayList;
+
 import cc.model.*;
 import cc.repository.*;
 import cc.service.DBConnectionManager;
@@ -86,6 +90,67 @@ public class DataInitializer implements InitializingBean {
 	@Async
 	public void initialize() {
 		SecurityContextHolder.setContext(createSecurityContext());
+		User mattdioso = new User();
+		mattdioso.setId(UUID.randomUUID().toString());
+		mattdioso.setUsername("mattdioso");
+		mattdioso.setUserSchool("Seattle University");
+		mattdioso.setUserEmail("dioso.matt@gmail.com");
+		userRepository.save(mattdioso);
+
+		School seattleu = new School();
+		seattleu.setId(UUID.randomUUID().toString());
+		seattleu.setSchoolName("Seattle University");
+		schoolRepository.save(seattleu);
+
+		Topic campus = new Topic();
+		campus.setId(UUID.randomUUID().toString());
+		campus.setTopicName("schoolcampus");
+		campus.setSchool(seattleu);
+
+		Topic financial = new Topic();
+		financial.setId(UUID.randomUUID().toString());
+		financial.setTopicName("schoolfinancial");
+		financial.setSchool(seattleu);
+
+		Topic nightlife = new Topic();
+		nightlife.setId(UUID.randomUUID().toString());
+		nightlife.setTopicName("schoolnightlife");
+		nightlife.setSchool(seattleu);
+
+		Topic professors = new Topic();
+		professors.setId(UUID.randomUUID().toString());
+		professors.setTopicName("schoolprofessors");
+		professors.setSchool(seattleu);
+
+		Topic social = new Topic();
+		social.setId(UUID.randomUUID().toString());
+		social.setTopicName("schoolsocial");
+		social.setSchool(seattleu);
+
+		Topic transit = new Topic();
+		transit.setId(UUID.randomUUID().toString());
+		transit.setTopicName("schooltransit");
+		transit.setSchool(seattleu);
+
+		Topic trends = new Topic();
+		trends.setId(UUID.randomUUID().toString());
+		trends.setTopicName("schooltrends");
+		trends.setSchool(seattleu);
+
+		Topic colleges = new Topic();
+		colleges.setId(UUID.randomUUID().toString());
+		colleges.setTopicName("schoolcomments");
+		colleges.setSchool(seattleu);
+
+
+		topicRepository.save(campus);
+		topicRepository.save(financial);
+		topicRepository.save(nightlife);
+		topicRepository.save(professors);
+		topicRepository.save(social);
+		topicRepository.save(transit);
+		topicRepository.save(trends);
+		topicRepository.save(colleges);
 		//Connection connection = db.connect();
 		/*try {
 			ResultSet rs = null;

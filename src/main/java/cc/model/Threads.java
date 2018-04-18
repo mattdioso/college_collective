@@ -39,16 +39,18 @@ public class Threads extends AuditObject {
 	private String userID;
 
 	@ManyToOne
-	@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
+	//@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
 	private Topic topic;
 
 	@ManyToOne
-	@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
+	//@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
 	private User user;
 
 	@OneToMany(mappedBy="thread", cascade= {CascadeType.ALL})
 	@OrderColumn(name="dateCreated")
 	private List<Posts> posts;
+
+	public Threads() {}
 
 	public Topic getTopic() {
 		return topic;

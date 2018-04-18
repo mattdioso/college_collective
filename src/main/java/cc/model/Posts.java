@@ -37,11 +37,11 @@ public class Posts extends AuditObject {
 	private String threadID;*/
 	
 	@ManyToOne
-	@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
+	//@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
 	private Threads thread;
 
 	@ManyToOne
-	@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
+	//@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
 	private User user;
 
 	/*@Column(name = "userID", nullable=false)
@@ -90,11 +90,11 @@ public class Posts extends AuditObject {
 		return userID;
 	}*/
 
-	public void setPostContent(String postContent) {
+	public void setContent(String postContent) {
 		this.content = postContent;
 	}
 
-	public String getPostContent() {
+	public String getContent() {
 		return content;
 	}
 }

@@ -32,7 +32,7 @@ public class Topic extends BaseObject {
 	private String schoolID;*/
 
 	@ManyToOne
-	@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
+	//@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
 	private School school;
 
 	@OneToMany(mappedBy="topic", cascade= {CascadeType.ALL})
