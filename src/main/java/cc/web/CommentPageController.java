@@ -62,29 +62,52 @@ public class CommentPageController {
 
 	@RequestMapping(value="school/{schoolID}/{topic}", method=RequestMethod.POST)
 	public String postComment(Model model, @ModelAttribute Posts newPost, @PathVariable("schoolID") String id, @PathVariable("topic") String topic) {
-		Posts post = new Posts();
-		model.addAttribute("newPost", newPost);
-		School school = schoolRepository.findOne(id);
 		model.addAttribute("selectedSchool", school);
+		model.addAttribute("newPost", newPost);
 		//model.addAttribute("topic", topicRepository.findByTopicName(topic));
+
+		School school = schoolRepository.findOne(id);
+		Posts post = new Posts();
 		User user = userRepository.findByUserName("mattdioso");
 		Topic selectedTopic = topicRepository.findByTopicName(topic);
 		Threads thread = new Threads();
+		List<Threads> threads = new ArrayList<Threads>();
+
 		thread.setSchoolID(id);
 		thread.setTopic(selectedTopic);
 		thread.setUser(user);
 		thread.setUserID(user.getId());
 		thread.setDateCreated(new Date());
 		threadRepository.save(thread);
-		List<Threads> threads = new ArrayList<Threads>();
 		threads.add(thread);
+
 		selectedTopic.setThreads(threads);
+
 		post.setThread(thread);
+		post.setCreatedBy(user.getUsername());
 		post.setUser(user);
 		post.setDateCreated(new Date());
 		post.setContent(newPost.getContent());
 		post.setPostName("test");
 		postRepository.save(post);
+
 		return "redirect:/school/" + id + "/" + topic;
 	}
+
+	/*
+	@RequestMapping(value="school/{schoolID}/{topic}", method=RequestMethod.POST)
+	public String replyComment(Model model, @ModelAttribute Posts reply, @PathVariable("schoolID")String id, @PathVariable("topic") String topic) {
+		addAttribute for school;
+		addAttribute for reply comment;
+
+		find post that its replying to;
+		create new post object;
+		assign values;
+		post.setThread(originalPost);
+
+		postRepository.save(post);
+
+		return "redirect:/school/" + id + "/" + topic;
+	}
+	*/
 }
