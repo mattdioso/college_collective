@@ -63,14 +63,14 @@ public class DataInitializer implements InitializingBean {
 	}
 
 	public ResultSet getPosts(Connection connection) throws SQLException {
-		String sql = "select * from posts";
+		String sql = "select * from post";
 		PreparedStatement statement = null;
 		statement = connection.prepareStatement(sql);
 		return statement.executeQuery();
 	}
 
 	public ResultSet getThreads(Connection connection) throws SQLException {
-		String sql = "select * from threads";
+		String sql = "select * from thread";
 		PreparedStatement statement = null;
 		statement = connection.prepareStatement(sql);
 		return statement.executeQuery();
@@ -151,6 +151,7 @@ public class DataInitializer implements InitializingBean {
 		topicRepository.save(transit);
 		topicRepository.save(trends);
 		topicRepository.save(colleges);
+
 		//Connection connection = db.connect();
 		/*try {
 			ResultSet rs = null;

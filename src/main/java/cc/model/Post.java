@@ -18,7 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.JoinColumn;
 
-import cc.model.Threads;
+import cc.model.Thread;
 import cc.model.User;
 
 import java.util.List;
@@ -27,7 +27,7 @@ import org.hibernate.envers.Audited;
 
 @Entity
 @Audited
-public class Posts extends AuditObject {
+public class Post extends AuditObject {
 	@Column(name = "postName", nullable = false)
 	private String postName;
 
@@ -38,7 +38,7 @@ public class Posts extends AuditObject {
 	
 	@ManyToOne
 	//@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
-	private Threads thread;
+	private Thread thread;
 
 	@ManyToOne
 	//@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
@@ -58,11 +58,11 @@ public class Posts extends AuditObject {
 		return threadID;
 	}*/
 
-	public void setThread(Threads thread) {
+	public void setThread(Thread thread) {
 		this.thread = thread;
 	}
 
-	public Threads getThread() {
+	public Thread getThread() {
 		return thread;
 	}
 

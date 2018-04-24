@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head data-th-fragment="head(title)">
     <meta charset="utf-8"/>
@@ -49,13 +49,13 @@
 	  						<li><a href="/News" style="color:rgb(247,148,29);">News</a></li>
 	  					</ul>
 	  				</li>
-  					<li data-sec-authorize="isAnonymous()"><a href="/login" style="float: right;">Login</a></li>
-  					<!-- <li data-sec-authorize="hasRole('ROLE_USER')">
+  					<li data-sec-authorize="isAnonymous()"><a href="/login" th:href="@{/login}" style="float: right;">Login</a></li>
+  					<li data-sec-authorize="hasRole('ROLE_USER')">
   						<form data-th-action="@{/logout}" method="POST">
   							<input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}" />
-  							<a onclick="$(this).closest('form').submit()"><span class="glyphicon glyphicon-log-out"></span>Logout</a> (<span data-sec-authorization="name"></span>)
+  							<a onclick="$(this).closest('form').submit()"><span class="glyphicon glyphicon-log-out"></span>Logout</a> (<span data-sec-authentication="name"></span>)
   						</form>
-  					</li> -->
+  					</li>
 				</ul>
 
 				<div class="col-sm-3 col-md-3 pull-right">
@@ -71,6 +71,7 @@
 			</div>
 		</nav>
 	</div>
+	
 	<div id="pictureCarousel" class="carousel slide" data-ride="carousel" data-interval="10000" data-pause="null" data-th-fragment="carousel" style="width:100%;height:auto;margin:auto;background-size:contain;display: block;">
 		<ol class="carousel-indicators">
 			<li data-target="#pictureCarousel" data-slide-to="0" class="active"></li>
@@ -113,6 +114,10 @@
 	
 
 	<div class="container" data-th-fragment="commentPage(section)">
+
+		<p th:inline="text">
+			Logged in as [[${#httpServletRequest.remoteUser}]]
+		</p>
 		<div class="row">
 			<div class="col-md-8" >
 				<h2 class="page-header" data-th-text="'Comments about ' + ${section}">Comments</h2>

@@ -16,7 +16,7 @@ import javax.persistence.JoinColumn;
 
 import java.util.List;
 
-import cc.model.Threads;
+import cc.model.Thread;
 import cc.model.School;
 
 import org.hibernate.envers.Audited;
@@ -37,7 +37,7 @@ public class Topic extends BaseObject {
 
 	@OneToMany(mappedBy="topic", cascade= {CascadeType.ALL})
 	@OrderColumn(name="dateCreated")
-	private List<Threads> threads;
+	private List<Thread> threads;
 
 	public void setSchool(School school) {
 		this.school=school;
@@ -63,11 +63,11 @@ public class Topic extends BaseObject {
 		return schoolID;
 	}*/
 
-	public List<Threads> getThreads() {
+	public List<Thread> getThreads() {
 		return threads;
 	}
 
-	public void setThreads(List<Threads> threads) {
+	public void setThreads(List<Thread> threads) {
 		this.threads=threads;
 	}
 }

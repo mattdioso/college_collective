@@ -21,13 +21,13 @@ import java.util.List;
 
 import org.hibernate.envers.Audited;
 
-import cc.model.Posts;
+import cc.model.Post;
 import cc.model.Topic;
 import cc.model.User;
 
 @Entity
 @Audited
-public class Threads extends AuditObject {
+public class Thread extends AuditObject {
 	
 	/*@Column(name = "topicID", nullable=false)
 	private String topicID;*/
@@ -46,11 +46,13 @@ public class Threads extends AuditObject {
 	//@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
 	private User user;
 
+
+
 	@OneToMany(mappedBy="thread", cascade= {CascadeType.ALL})
 	@OrderColumn(name="dateCreated")
-	private List<Posts> posts;
+	private List<Post> posts;
 
-	public Threads() {}
+	public Thread() {}
 
 	public Topic getTopic() {
 		return topic;
@@ -91,11 +93,11 @@ public class Threads extends AuditObject {
 		this.userID=name;
 	}
 
-	public void setPosts(List<Posts> posts) {
+	public void setPosts(List<Post> posts) {
 		this.posts = posts;
 	}
 
-	public List<Posts> getPosts() {
+	public List<Post> getPosts() {
 		return posts;
 	}
 }

@@ -1,7 +1,7 @@
 package cc.web;
 
-import cc.model.Posts;
-import cc.model.Threads;
+import cc.model.Post;
+import cc.model.Thread;
 import cc.model.School;
 import cc.model.Topic;
 import cc.model.User;
@@ -55,23 +55,26 @@ public class CommentPageController {
 		//model.addAttribute("topic", topicRepository.findByTopicName(topic));
 		//model.addAttribute("topics", topicRepository.findAllBySchoolID(school));
 		model.addAttribute("threads", threadRepository.findAllByOrderByDateCreated());
-		model.addAttribute("newPost", new Posts());
+		model.addAttribute("newPost", new Post());
 		model.addAttribute("posts", postRepository.findAllByOrderByDateCreated());
 		return topic;
 	}
 
 	@RequestMapping(value="school/{schoolID}/{topic}", method=RequestMethod.POST)
-	public String postComment(Model model, @ModelAttribute Posts newPost, @PathVariable("schoolID") String id, @PathVariable("topic") String topic) {
-		model.addAttribute("selectedSchool", school);
-		model.addAttribute("newPost", newPost);
+	public String postComment(Model model, @ModelAttribute Post newPost, @PathVariable("schoolID") String id, @PathVariable("topic") String topic) {
+		
 		//model.addAttribute("topic", topicRepository.findByTopicName(topic));
 
 		School school = schoolRepository.findOne(id);
-		Posts post = new Posts();
+		Post post = new Post();
 		User user = userRepository.findByUserName("mattdioso");
 		Topic selectedTopic = topicRepository.findByTopicName(topic);
-		Threads thread = new Threads();
-		List<Threads> threads = new ArrayList<Threads>();
+		Thread thread = new Thread();
+		List<Post> posts = new ArrayList<Post>();
+		List<Thread> threads = new ArrayList<Thread>();
+
+		model.addAttribute("selectedSchool", school);
+		//model.addAttribute("newPost", newPost);
 
 		thread.setSchoolID(id);
 		thread.setTopic(selectedTopic);
@@ -79,7 +82,6 @@ public class CommentPageController {
 		thread.setUserID(user.getId());
 		thread.setDateCreated(new Date());
 		threadRepository.save(thread);
-		threads.add(thread);
 
 		selectedTopic.setThreads(threads);
 
@@ -91,9 +93,13 @@ public class CommentPageController {
 		post.setPostName("test");
 		postRepository.save(post);
 
+		posts.add(post);
+		thread.setPosts(posts);
+
 		return "redirect:/school/" + id + "/" + topic;
 	}
 
+	
 	/*
 	@RequestMapping(value="school/{schoolID}/{topic}", method=RequestMethod.POST)
 	public String replyComment(Model model, @ModelAttribute Posts reply, @PathVariable("schoolID")String id, @PathVariable("topic") String topic) {

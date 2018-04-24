@@ -13,8 +13,8 @@ import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
-import cc.model.Threads;
-import cc.model.Posts;
+import cc.model.Thread;
+import cc.model.Post;
 
 import java.util.List;
 
@@ -35,11 +35,11 @@ public class User extends BaseObject {
 
 	@OneToMany(mappedBy="user", cascade= {CascadeType.ALL})
 	@OrderColumn(name="dateCreated")
-	private List<Threads> threads;
+	private List<Thread> threads;
 
 	@OneToMany(mappedBy="user", cascade= {CascadeType.ALL})
 	@OrderColumn(name="dateCreated")
-	private List<Posts> posts;
+	private List<Post> posts;
 
 	public User() {}
 
@@ -73,19 +73,19 @@ public class User extends BaseObject {
 		return userEmail;
 	}
 
-	public void setThreads(List<Threads> threads) {
+	public void setThreads(List<Thread> threads) {
 		this.threads=threads;
 	}
 
-	public List<Threads> getThreads() {
+	public List<Thread> getThreads() {
 		return threads;
 	}
 
-	public void setPosts(List<Posts> posts) {
+	public void setPosts(List<Post> posts) {
 		this.posts=posts;
 	}
 
-	public List<Posts> getPosts() {
+	public List<Post> getPosts() {
 		return posts;
 	}
 }
