@@ -10,13 +10,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.JoinColumn;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import org.hibernate.envers.Audited;
@@ -49,7 +50,8 @@ public class Thread extends AuditObject {
 
 
 	@OneToMany(mappedBy="thread", cascade= {CascadeType.ALL})
-	@OrderColumn(name="dateCreated")
+	//@OrderColumn(name="dateCreated")
+	@OrderBy("dateCreated desc")
 	private List<Post> posts;
 
 	public Thread() {}

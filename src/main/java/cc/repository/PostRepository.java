@@ -8,6 +8,6 @@ import org.springframework.data.repository.history.RevisionRepository;
 import cc.model.Post;
 
 public interface PostRepository extends RevisionRepository<Post, String, Integer>, PagingAndSortingRepository<Post, String> {
-	public List<Post> findAllByOrderByDateCreated();
+	public List<Post> findAllByOrderByDateCreatedDesc();
 	public Post findById(String id);
 }

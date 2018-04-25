@@ -1,6 +1,6 @@
 package cc.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -49,6 +49,8 @@ public class Post extends AuditObject {
 	
 	@Lob
 	private String content;
+
+	public Post() {}
 
 	/*public void setThreadID(String threadName) {
 		this.threadID=threadName;
