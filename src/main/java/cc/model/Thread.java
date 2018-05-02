@@ -51,7 +51,7 @@ public class Thread extends AuditObject {
 
 	@OneToMany(mappedBy="thread", cascade= {CascadeType.ALL})
 	//@OrderColumn(name="dateCreated")
-	@OrderBy("dateCreated desc")
+	@OrderBy("dateCreated asc")
 	private List<Post> posts;
 
 	public Thread() {}

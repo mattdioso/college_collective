@@ -166,7 +166,7 @@
 							</div>
 
 							<!-- <article data-th-if="${thread.posts.size()} &gt; 1" data-th-each=" post : ${thread.posts}" data-th-for="${'post' + postStat.count}"> -->
-							<article data-th-if="${thread.posts.size()} &gt; 1" data-th-each="post : ${thread.posts.subList(1, ${thread.posts.size()})}">
+							<article data-th-if="${thread.posts.size()} &gt; 1" data-th-each="post : ${thread.posts.subList(1, #lists.size(thread.posts))}">
 								<div class="col-md-2 col-sm-2 hidden-xs">
 									<figure class="thumbnail">
 										<img class="img-responsive" src="../../images/mattdioso.jpg" data-th-src="@{/images/mattdioso.jpg}" style="width:84px;height:84px;margin:0;" />
