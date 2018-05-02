@@ -134,12 +134,13 @@
 				<p></p>
 							
 				<section class="comment-list" style="margin-left:150px;">
-					<article data-th-each="thread : ${threads}">
-						<article class="row" data-th-each="post : ${thread.posts}">
+					<div data-th-each="thread : ${threads}">
+						<article class="row" data-th-object="${thread.posts.get(0)}"> <!-- data-th-each="thread : ${threads}"> -->
+							<!-- <article class="row" data-th-each="post : ${thread.posts}"> -->
 							<div class="col-md-2 col-sm-2 hidden-xs">
 								<figure class="thumbnail">
 									<img class="img-responsive" src="../../images/mattdioso.jpg" data-th-src="@{/images/mattdioso.jpg}" style="width:84px;height:84px;margin:0;" />
-									<figcaption class="text-center" data-th-text="${post.user.getUsername()}" />
+									<figcaption class="text-center" data-th-text="*{user.getUsername()}" />        <!-- ${post.user.getUsername()}" /> -->
 								</figure>
 							</div>
 
@@ -147,25 +148,59 @@
 								<div class="panel panel-default arrow left">
 									<div class="panel-body">
 										<header class="text-left">
-											<div class="comment-user" data-th-text="${post.user.getUsername()}"><i class="fa fa-user"></i>That Guy</div>
-											<time class="comment-date" datetime="04-03-2018 3:21" data-th-text="${post.dateCreated}"><i class="fa fa-clock-o"></i>Mar 4, 2018</time>
+											<div class="comment-user" data-th-text="*{user.getUsername()}"><i class="fa fa-user"></i>That Guy</div>
+											<time class="comment-date" datetime="04-03-2018 3:21" data-th-text="*{dateCreated}"><i class="fa fa-clock-o"></i>Mar 4, 2018</time>
 										</header>
-										<div class="comment-post" data-th-text="${post.content}"></div>
+										<div class="comment-post" data-th-text="*{content}"></div>
 										<!-- <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i>reply</a></p> -->
 									</div>
 								</div>
 							</div>
-
 							<div class="widget-area no-padding blank">
 								<div class="status-upload">
-									<form data-th-action="@{'/school/' + ${selectedSchool.id} + '/' + ${topic} + '/' + ${post.id} + '/reply'}" data-th-object="${newPost}" method="POST">
+									<form data-th-action="@{'/school/' + ${selectedSchool.id} + '/' + ${topic} + '/' + ${thread.posts.get(0).getId()} + '/reply'}" data-th-object="${newPost}" method="POST" style="width:50%; float:right;">
 										<textarea class="form-control" data-th-field="*{content}"></textarea>
 										<button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>Reply</button>
 									</form>
 								</div>
 							</div>
+
+							<!-- <article data-th-if="${thread.posts.size()} &gt; 1" data-th-each=" post : ${thread.posts}" data-th-for="${'post' + postStat.count}"> -->
+							<article data-th-if="${thread.posts.size()} &gt; 1" data-th-each="post : ${thread.posts.subList(1, ${thread.posts.size()})}">
+								<div class="col-md-2 col-sm-2 hidden-xs">
+									<figure class="thumbnail">
+										<img class="img-responsive" src="../../images/mattdioso.jpg" data-th-src="@{/images/mattdioso.jpg}" style="width:84px;height:84px;margin:0;" />
+										<figcaption class="text-center" data-th-text="*{user.getUsername()}" />        <!-- ${post.user.getUsername()}" /> -->
+									</figure>
+								</div>
+
+								<div class="col-md-10 col-sm-10">
+									<div class="panel panel-default arrow left">
+										<div class="panel-body">
+											<header class="text-left">
+												<div class="comment-user" data-th-text="${post.user.getUsername()}"><i class="fa fa-user"></i>That Guy</div>
+												<time class="comment-date" datetime="04-03-2018 3:21" data-th-text="${post.dateCreated}"><i class="fa fa-clock-o"></i>Mar 4, 2018</time>
+											</header>
+											<div class="comment-post" data-th-text="${post.content}"></div>
+											<!-- <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i>reply</a></p> -->
+										</div>
+									</div>
+
+									<div class="widget-area no-padding blank">
+										<div class="status-upload">
+											<form data-th-action="@{'/school/' + ${selectedSchool.id} + '/' + ${topic} + '/' + ${post.id} + '/reply'}" data-th-object="${newPost}" method="POST" style="width:50%; float:right;">
+												<textarea class="form-control" data-th-field="*{content}"></textarea>
+												<button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>Reply</button>
+											</form>
+										</div>
+									</div>
+
+								</div>
+
+								
+							</article>
 						</article>
-					</article>
+					</div>
 					
 					<!-- <article class="row">
 						<div class="col-md-2 col-sm-2 hidden-xs">
