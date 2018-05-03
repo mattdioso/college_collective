@@ -30,35 +30,18 @@ import org.hibernate.envers.Audited;
 public class Post extends AuditObject {
 	@Column(name = "postName", nullable = false)
 	private String postName;
-
-	/*@Column(name = "threadID", nullable=false)
-	@ManyToOne
-	@JoinColumn(name="id", nullable=false)
-	private String threadID;*/
 	
 	@ManyToOne
-	//@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
 	private Thread thread;
 
 	@ManyToOne
-	//@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
 	private User user;
 
-	/*@Column(name = "userID", nullable=false)
-	private String userID;*/
 	
 	@Lob
 	private String content;
 
 	public Post() {}
-
-	/*public void setThreadID(String threadName) {
-		this.threadID=threadName;
-	}
-
-	public String getThreadID() {
-		return threadID;
-	}*/
 
 	public void setThread(Thread thread) {
 		this.thread = thread;
@@ -83,14 +66,6 @@ public class Post extends AuditObject {
 	public String getPostName() {
 		return postName;
 	}
-
-	/*public void setUserID(String userName) {
-		this.userID=userName;
-	}
-
-	public String getUserID() {
-		return userID;
-	}*/
 
 	public void setContent(String postContent) {
 		this.content = postContent;

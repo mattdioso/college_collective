@@ -29,9 +29,6 @@ import cc.model.User;
 @Entity
 @Audited
 public class Thread extends AuditObject {
-	
-	/*@Column(name = "topicID", nullable=false)
-	private String topicID;*/
 
 	@Column(name = "schoolID", nullable=false)
 	private String schoolID;
@@ -40,17 +37,12 @@ public class Thread extends AuditObject {
 	private String userID;
 
 	@ManyToOne
-	//@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
 	private Topic topic;
 
 	@ManyToOne
-	//@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
 	private User user;
 
-
-
 	@OneToMany(mappedBy="thread", cascade= {CascadeType.ALL})
-	//@OrderColumn(name="dateCreated")
 	@OrderBy("dateCreated asc")
 	private List<Post> posts;
 
@@ -71,13 +63,6 @@ public class Thread extends AuditObject {
 	public void setUser(User user) {
 		this.user=user;
 	}
-	/*public String getTopicID() {
-		return topicID;
-	}
-
-	public void setTopicID(String name) {
-		this.topicID=name;
-	}*/
 
 	public String getSchoolID() {
 		return schoolID;

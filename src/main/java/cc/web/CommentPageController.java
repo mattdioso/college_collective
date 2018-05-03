@@ -121,16 +121,6 @@ public class CommentPageController {
 		originalPost.getThread().setPosts(posts);
 		postRepository.save(postReply);
 
-		/*addAttribute for school;
-		addAttribute for reply comment;
-
-		find post that its replying to;
-		create new post object;
-		assign values;
-		post.setThread(originalPost);
-
-		postRepository.save(post);
-*/
 		return "redirect:/school/" + id + "/" + topic;
 	}
 	
