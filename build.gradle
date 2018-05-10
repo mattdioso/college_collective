@@ -15,6 +15,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'application'
 
 mainClassName = "cc.CollegeCollectiveApplication"
+applicationDefaultJvmArgs = ["-Dspring.profiles.active=CC_test"]
 
 jar {
 	baseName = 'college-collective'
@@ -39,7 +40,16 @@ dependencies {
 
 	compile "org.springframework.data:spring-data-rest-webmvc"
 
-	compile "org.springframework.data:spring-data-envers:1.0.6.RELEASE"
+	compile "org.springframework.data:spring-data-envers:2.0.6.RELEASE"
+	
+	//LDAP authentication
+	compile("org.springframework.ldap:spring-ldap-core:2.3.2.RELEASE") //prev 2.2.0.RELEASE
+    compile("org.springframework.security:spring-security-ldap")
+    compile("org.springframework.security:spring-security-crypto:3.1.0.RELEASE")
+    compile("org.springframework:spring-tx")
+    compile("com.unboundid:unboundid-ldapsdk:3.2.1")
+
+
 
 	compile "com.h2database:h2"
 
@@ -60,6 +70,9 @@ dependencies {
 
 	compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.0.RELEASE")
 	testCompile("junit:junit")
+
+	compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.6'
+	//compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.43'
 }
 
 sourceSets {

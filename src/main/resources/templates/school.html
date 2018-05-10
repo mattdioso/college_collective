@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="global desktop">
+
+<head data-th-replace="fragments/mainlayout :: head(${selectedSchool.schoolName})" />
+
+
+<body>
+	<div data-th-replace="fragments/mainlayout :: bodyHeader"></div>
+	<div data-th-replace="fragments/mainlayout :: carousel"></div>
+
+	<div id="LowerHalfMainPage" class="row" >	
+		<div class="row">
+			<div class="col-xs-6" style="padding-left: 30px;">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 th:text="${selectedSchool.schoolName}" class="panel-title"></h3>
+					</div>
+					<div class="panel-body" style="width: auto;position:relative;">
+						<div class="container" style="width:auto;">
+							<div class="row" style="width: auto;">
+								<div class="span6">
+									<div class="left-content" style="border-right: 1px solid #f7941d;">
+										<h1>Academic</h1>
+										<div class="row">
+											<a id="AcademicButton" href="schoolcampus.html" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schoolcampus'}" class="btn btn-default">Campus</a>
+											<button id="AcademicButton" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" style="border: rgb(247, 148, 29);">Colleges<span class="caret"></span>	
+											</button>
+											<ul class="dropdown-menu">
+												<li><a href="schoolcomments.html#3" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schoolcomments#3'}" data-target="#commentCarousel" data-slide="3">Albers School of Business and Economics</a></li>
+												<li><a href="schoolcomments.html#1" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schoolcomments#1'}" data-target="#commentCarousel" data-slide="1">College of Arts and Sciences</a></li>
+												<li><a href="schoolcomments.html#4" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schoolcomments#4'}" data-target="#commentCarousel" data-slide="4">Matteo Ricci College</a></li>
+												<li><a href="schoolcomments.html#2" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schoolcomments#2'}" data-target="#commentCarousel" data-slide="2">College of Nursing</a></li>
+												<li><a href="schoolcomments.html#0" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schoolcomments#0'}" data-target="#commentCarousel" data-slide="0">College of Science and Engineering</a></li>
+												<li><a href="schoolcomments.html#5" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schoolcomments#5'}" data-target="#commentCarousel" data-slide="5">School of Law</a></li>
+												<li><a href="schoolcomments.html#6" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schoolcomments#6'}" data-target="#commentCarousel" data-slide="6">School of New and Continuing Studies</a></li>
+												<li><a href="schoolcomments.html#7" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schoolcomments#7'}" data-target="#commentCarousel" data-slide="7">School of Theology and Ministry</a></li>
+											</ul>
+										</div>
+										<div class="row">
+											<a id="AcademicButton" href="schoolfinancial.html" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schoolfinancial'}" class="btn btn-default">Financial Aid</a>
+											<a id="AcademicButton" href="schoolprofessors.html" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schoolprofessors'}" class="btn btn-default">Professors</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="span6" style="width: 50%;">
+									<div class="right-content">
+										<h1>Social</h1>
+										<div class="row">
+											<a id="AcademicButton" href="schoolnightlife.html" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schoolnightlife'}" class="btn btn-default">Night Life</a>
+											<a id="AcademicButton" href="schoolsocial.html" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schoolsocial'}" class="btn btn-default">Social</a>
+										</div>
+										<div class="row">
+											<a id="AcademicButton" href="schooltrends.html" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schooltrends'}" class="btn btn-default">Trending</a>
+											<a id="AcademicButton" href="schooltransit.html" data-th-href="@{'/school/' + ${selectedSchool.id} + '/schooltransit'}" class="btn btn-default">Transit</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<div class="container island" style="float: right;width: auto;position:relative;">
+					<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title" data-th-text="#{login.title}">Login</h3>
+							</div>
+
+							<div data-sec-authorize="isAnonymous()" class="panel-body">
+								<form role="form" data-th-action="@{/login}" method="POST">
+									<fieldset>
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+												<input class="form-control" data-th-placeholder="#{login.prompt.username}" type="text" name="username" required="true" autofocus="true" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false"/>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+												<input class="form-control" data-th-placeholder="#{login.prompt.password}" type="password" name="password" value="" required="true" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}" />
+											<input type="submit" class="btn btn-lg btn-success btn-block" name="submit" data-th-value="#{login.login}" />
+										</div>
+									</fieldset>
+								</form>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+
+<footer>
+</footer>
+
+</html>

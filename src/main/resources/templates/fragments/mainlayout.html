@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head data-th-fragment="head(title)">
     <meta charset="utf-8"/>
@@ -8,13 +8,12 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
  	
- 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="../../static/css/main.css" th:href="@{/css/main.css}"/>
-		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="../../static/css/seattleu.css" th:href="@{/css/seattleu.css}" />
-		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" type="text/css" href="../../static/css/main.css" th:href="@{/css/main.css}"/>
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../static/css/seattleu.css" th:href="@{/css/seattleu.css}" />
 </head>
 
 <body>
@@ -29,14 +28,17 @@
 				</div>
 				
 				
-					<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav">
 
   					<li class="active"><a href="/">Home</a></li>
   					<li class="dropdown"><a href="/Colleges" data-toggle="dropdown" class="dropdown-toggle">Colleges<b class="caret"></b></a>
 	  					<ul class="dropdown-menu">
-	  						<li><a href="seattleu.html" th:href="@{/seattleu}" style="color:rgb(247,148,29);font: corbel;">Seattle University</a></li>
+	  						<li data-th-each="school : ${schools}">
+	  							<a href="school.html" th:href="@{'/school/' + ${school.id}}" style="color:rgb(247, 148, 29); font:corbel;" data-th-text="${school.schoolName}">Seattle University</a>
+	  						</li>
+	  						<!-- <li><a href="seattleu.html" th:href="@{/seattleu}" style="color:rgb(247,148,29);font: corbel;">Seattle University</a></li>
 	  						<li><a href="/UniversityOfWashington" style="color:rgb(247,148,29);font: corbel;">University of Washington</a></li>
-	  						<li><a href="/SeattlePacificUniversity" style="color:rgb(247,148,29);font: corbel;">Seattle Pacific University</a></li>
+	  						<li><a href="/SeattlePacificUniversity" style="color:rgb(247,148,29);font: corbel;">Seattle Pacific University</a></li> -->
 	  					</ul>
   					</li>
   					<li class="dropdown"><a href="/About" data-toggle="dropdown" class="dropdown-toggle">About<b class="caret"></b></a>
@@ -46,7 +48,13 @@
 	  						<li><a href="/News" style="color:rgb(247,148,29);">News</a></li>
 	  					</ul>
 	  				</li>
-  					<li><a href="/login" style="float: right;">Login</a></li>
+  					<li data-sec-authorize="isAnonymous()"><a href="/login" data-th-href="@{/login}" style="float: right;">Login</a></li>
+  					<li data-sec-authorize="isAuthenticated()"> <!-- "hasRole('ROLE_USER')"> -->
+  						<form data-th-action="@{/logout}" method="POST">
+  							<input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}" />
+  							<a onclick="$(this).closest('form').submit()"><span class="glyphicon glyphicon-log-out"></span>Logout</a> (<span data-sec-authentication="name"></span>)
+  						</form>
+  					</li>
 				</ul>
 
 				<div class="col-sm-3 col-md-3 pull-right">
@@ -62,6 +70,7 @@
 			</div>
 		</nav>
 	</div>
+	
 	<div id="pictureCarousel" class="carousel slide" data-ride="carousel" data-interval="10000" data-pause="null" data-th-fragment="carousel" style="width:100%;height:auto;margin:auto;background-size:contain;display: block;">
 		<ol class="carousel-indicators">
 			<li data-target="#pictureCarousel" data-slide-to="0" class="active"></li>
@@ -104,177 +113,90 @@
 	
 
 	<div class="container" data-th-fragment="commentPage(section)">
+
+		<p th:inline="text">
+			Logged in as [[${#httpServletRequest.remoteUser}]]
+		</p>
 		<div class="row">
 			<div class="col-md-8" >
 				<h2 class="page-header" data-th-text="'Comments about ' + ${section}">Comments</h2>
 				<div class="row">
 					<div class="widget-area no-padding blank">
 						<div class="status-upload">
-							<form>
-								<textarea placeholder="Please share your thoughts..."></textarea>
+							<form data-th-action="@{'/school/' + ${selectedSchool.id} + '/' + ${topic}}" data-th-object="${newPost}" method="POST">
+								<textarea class="form-control" data-th-field="*{content}"></textarea>
 								<button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>Share</button>
 							</form>
 						</div>
 					</div>
 				</div>
 				<p></p>
-				<section class="comment-list" style="margin-left:150px;">
-					<!--First Comment-->
-					<article class="row">
-						<div class="col-md-2 col-sm-2 hidden-xs">
-							<figure class="thumbnail">
-								<img class="img-responsive" src="../../images/mattdioso.jpg" data-th-src="@{/images/mattdioso.jpg}" style="width:84px;height:84px;margin:0;" />
-								<figcaption class="text-center">username</figcaption>
-							</figure>
+							
+				<!-- <section class="comment-list" style="margin-left:150px;"> -->
+					<div data-th-each="thread : ${threads}" class="row">
+						<div id ="post" class="row">
+							<article data-th-object="${thread.posts.get(0)}">
+								<div class="col-md-2 col-sm-2 hidden-xs">
+									<figure class="thumbnail">
+										<img class="img-responsive" src="../../images/mattdioso.jpg" data-th-src="@{/images/mattdioso.jpg}" style="width:84px;height:84px;margin:0;" />
+										<figcaption class="text-center" data-th-text="*{user.getUsername()}" />        <!-- ${post.user.getUsername()}" /> -->
+									</figure>
+								</div>
+
+								<div class="col-md-10 col-sm-10">
+									<div class="panel panel-default arrow left">
+										<div class="panel-body">
+											<header class="text-left">
+												<div class="comment-user" data-th-text="*{user.getUsername()}"><i class="fa fa-user"></i>That Guy</div>
+												<time class="comment-date" datetime="04-03-2018 3:21" data-th-text="*{dateCreated}"><i class="fa fa-clock-o"></i>Mar 4, 2018</time>
+											</header>
+											<div class="comment-post" data-th-text="*{content}"></div>
+										</div>
+									</div>
+								</div>
+								<div data-th-if="${thread.posts.size()} == 1" class="widget-area no-padding blank">
+									<div class="status-upload">
+										<form data-th-action="@{'/school/' + ${selectedSchool.id} + '/' + ${topic} + '/' + ${thread.posts.get(0).getId()} + '/reply'}" data-th-object="${newPost}" method="POST" style="width:50%; float:right;">
+											<textarea class="form-control" data-th-field="*{content}"></textarea>
+											<button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>Reply</button>
+										</form>
+									</div>
+								</div>
+							</article>
 						</div>
 
-						<div class="col-md-10 col-sm-10">
-							<div class="panel panel-default arrow left">
-								<div class="panel-body">
-									<header class="text-left">
-										<div class="comment-user"><i class="fa fa-user"></i>That Guy</div>
-										<time class="comment-date" datetime="04-03-2018 3:21"><i class="fa fa-clock-o"></i>Mar 4, 2018</time>
-									</header>
-									<div class="comment-post">
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-										</p>
+						<div id="replies" class="row" style="width:75%;float:right;" data-th-if="${thread.posts.size()} &gt; 1">
+							<article data-th-each="post : ${thread.posts.subList(1, #lists.size(thread.posts))}">
+								<div class="col-md-2 col-sm-2 hidden-xs">
+									<figure class="thumbnail">
+										<img class="img-responsive" src="../../images/mattdioso.jpg" data-th-src="@{/images/mattdioso.jpg}" style="width:84px;height:84px;margin:0;" />
+										<figcaption class="text-center" data-th-text="${post.user.getUsername()}" />        <!-- ${post.user.getUsername()}" /> -->
+									</figure>
+								</div>
+
+								<div class="col-md-10 col-sm-10">
+									<div class="panel panel-default arrow left">
+										<div class="panel-body">
+											<header class="text-left">
+												<div class="comment-user" data-th-text="${post.user.getUsername()}"><i class="fa fa-user"></i>That Guy</div>
+												<time class="comment-date" datetime="04-03-2018 3:21" data-th-text="${post.dateCreated}"><i class="fa fa-clock-o"></i>Mar 4, 2018</time>
+											</header>
+											<div class="comment-post" data-th-text="${post.content}"></div>
+										</div>
 									</div>
-									<p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i>reply</a></p>
+								</div>
+							</article>
+							<div class="widget-area no-padding blank">
+								<div class="status-upload">
+									<form data-th-action="@{'/school/' + ${selectedSchool.id} + '/' + ${topic} + '/' + ${thread.posts.get(0).getId()} + '/reply'}" data-th-object="${newPost}" method="POST" style="width:50%; float:right;">
+										<textarea class="form-control" data-th-field="*{content}"></textarea>
+										<button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>Reply</button>
+									</form>
 								</div>
 							</div>
 						</div>
-					</article>
-
-					<!-- Second Comment Reply -->
-					<article class="row">
-						<div class="col-md-2 col-sm-2 col-md-offset-1 col-sm-offset-0 hidden-xs">
-							<figure class="thumbnail">
-								<img class="img-responsive" src="../../images/mattdioso.jpg" data-th-src="@{/images/mattdioso.jpg}" style="width:84px;height:84px;margin:0;" />
-								<figcaption class="text-center">username</figcaption>
-							</figure>
-						</div>
-						<div class="col-md-9 col-sm-9">
-							<div class="panel panel-default arrow left">
-								<div class="panel-heading right">Reply</div>
-								<div class="panel-body">
-									<header class="text-left">
-										<div class="comment-user"><i class="fa fa-user"></i>That Guy</div>
-										<time class="comment-date" datetime="04-03-2018 3:30"><i class="fa fa-clock-o"></i>Mar 4, 2018</time>
-									</header>
-									<div class="comment-post">
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-										</p>
-									</div>
-									<p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i>reply</a></p>
-								</div>
-							</div>
-						</div>
-					</article>
-
-					<!-- Third Comment -->
-		          <article class="row">
-		            <div class="col-md-10 col-sm-10">
-		              <div class="panel panel-default arrow right">
-		                <div class="panel-body">
-		                  <header class="text-right">
-		                    <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-		                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-		                  </header>
-		                  <div class="comment-post">
-		                    <p>
-		                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-		                    </p>
-		                  </div>
-		                  <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-		                </div>
-		              </div>
-		            </div>
-		            <div class="col-md-2 col-sm-2 hidden-xs">
-		              <figure class="thumbnail">
-		                <img class="img-responsive" src="../../images/mattdioso.jpg" data-th-src="@{/images/mattdioso.jpg}" style="width:84px;height:84px;margin:0;" />
-		                <figcaption class="text-center">username</figcaption>
-		              </figure>
-		            </div>
-		          </article>
-		          <!-- Fourth Comment -->
-		          <article class="row">
-		            <div class="col-md-2 col-sm-2 hidden-xs">
-		              <figure class="thumbnail">
-		                <img class="img-responsive" src="../../images/mattdioso.jpg" data-th-src="@{/images/mattdioso.jpg}" style="width:84px;height:84px;margin:0;" />
-		                <figcaption class="text-center">username</figcaption>
-		              </figure>
-		            </div>
-		            <div class="col-md-10 col-sm-10 col-xs-12">
-		              <div class="panel panel-default arrow left">
-		                <div class="panel-body">
-		                  <header class="text-left">
-		                    <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-		                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-		                  </header>
-		                  <div class="comment-post">
-		                    <p>
-		                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-		                    </p>
-		                  </div>
-		                  <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-		                </div>
-		              </div>
-		            </div>
-		          </article>
-		          <!-- Fifth Comment -->
-		          <article class="row">
-		            <div class="col-md-10 col-sm-10">
-		              <div class="panel panel-default arrow right">
-		                <div class="panel-body">
-		                  <header class="text-right">
-		                    <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-		                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-		                  </header>
-		                  <div class="comment-post">
-		                    <p>
-		                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-		                    </p>
-		                  </div>
-		                  <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-		                </div>
-		              </div>
-		            </div>
-		            <div class="col-md-2 col-sm-2 hidden-xs">
-		              <figure class="thumbnail">
-		                <img class="img-responsive" src="../../images/mattdioso.jpg" data-th-src="@{/images/mattdioso.jpg}" style="width:84px;height:84px;margin:0;" />
-		                <figcaption class="text-center">username</figcaption>
-		              </figure>
-		            </div>
-		          </article>
-		          <!-- Sixth Comment Reply -->
-		          <article class="row">
-		            <div class="col-md-9 col-sm-9 col-md-offset-1 col-md-pull-1 col-sm-offset-0">
-		              <div class="panel panel-default arrow right">
-		                <div class="panel-heading">Reply</div>
-		                <div class="panel-body">
-		                  <header class="text-right">
-		                    <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-		                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-		                  </header>
-		                  <div class="comment-post">
-		                    <p>
-		                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-		                    </p>
-		                  </div>
-		                  <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-		                </div>
-		              </div>
-		            </div>
-		            <div class="col-md-2 col-sm-2 col-md-pull-1 hidden-xs">
-		              <figure class="thumbnail">
-		                <img class="img-responsive" src="../../images/mattdioso.jpg" data-th-src="@{/images/mattdioso.jpg}" style="width:84px;height:84px;margin:0;" />
-		                <figcaption class="text-center">username</figcaption>
-		              </figure>
-		            </div>
-		          </article>
-				</section>
+					</div>
+				<!-- </section> -->
 			</div>
 		</div>
 	</div>

@@ -1,9 +1,57 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head data-th-replace="fragments/mainlayout :: head('Login')" />
 
 <body>
 	<div data-th-replace="fragments/mainlayout :: bodyHeader"></div>
+	<div class="container island">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title" data-th-text="#{login.title}">Login</h3>
+			</div>
+
+			<div data-sec-authorize="isAnonymous()" class="panel-body">
+				<form role="form" data-th-action="@{/login}" method="POST">
+					<fieldset>
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+								<input class="form-control" data-th-placeholder="#{login.prompt.username}" type="text" name="username" required="true" autofocus="true" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+								<input class="form-control" data-th-placeholder="#{login.prompt.password}" type="password" name="password" value="" required="true" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false"></input>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}"> </input>
+							<input type="submit" class="btn btn-lg btn-success btn-block" name="submit" data-th-value="#{login.login}"></input>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+
+		<div data-sec-authorize="isFullyAuthenticated()" class="panel-body">
+			<div class="panel-group alert alert-info">
+				<span data-th-text="#{login.login_confirmation(${#authentication.name})}"></span>
+			</div>
+
+			<div class="panel-group">
+				<form role="form" data-th-action="@{/logout}" method="POST">
+					<fieldset>
+						<input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}" />
+						<input type="submit" class="btn btn-success btn-block" name="submit" data-th-value="#{login.logout}"/>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+
+	</div>
 </body>
 </html>
