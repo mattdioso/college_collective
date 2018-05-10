@@ -48,8 +48,8 @@
 	  						<li><a href="/News" style="color:rgb(247,148,29);">News</a></li>
 	  					</ul>
 	  				</li>
-  					<li data-sec-authorize="isAnonymous()"><a href="/login" th:href="@{/login}" style="float: right;">Login</a></li>
-  					<li data-sec-authorize="hasRole('ROLE_USER')">
+  					<li data-sec-authorize="isAnonymous()"><a href="/login" data-th-href="@{/login}" style="float: right;">Login</a></li>
+  					<li data-sec-authorize="isAuthenticated()"> <!-- "hasRole('ROLE_USER')"> -->
   						<form data-th-action="@{/logout}" method="POST">
   							<input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}" />
   							<a onclick="$(this).closest('form').submit()"><span class="glyphicon glyphicon-log-out"></span>Logout</a> (<span data-sec-authentication="name"></span>)

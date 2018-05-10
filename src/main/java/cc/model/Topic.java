@@ -28,11 +28,7 @@ public class Topic extends BaseObject {
 	@Column(name = "topicName", nullable=false)	
 	private String topicName;
 
-	/*@Column(name = "schoolID", nullable=false)
-	private String schoolID;*/
-
 	@ManyToOne
-	//@JoinColumn(name="id", insertable=false, updatable=false, nullable=false)
 	private School school;
 
 	@OneToMany(mappedBy="topic", cascade= {CascadeType.ALL})
@@ -55,13 +51,6 @@ public class Topic extends BaseObject {
 		return topicName;
 	}
 
-	/*public void setSchoolID(String name) {
-		this.schoolID=name;
-	}
-
-	public String getSchoolID() {
-		return schoolID;
-	}*/
 
 	public List<Thread> getThreads() {
 		return threads;

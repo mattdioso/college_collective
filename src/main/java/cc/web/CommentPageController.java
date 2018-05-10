@@ -25,6 +25,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.stereotype.Controller;
 
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.ui.Model;
@@ -107,6 +111,7 @@ public class CommentPageController {
 	@RequestMapping(value="school/{schoolID}/{topic}/{postID}/reply", method=RequestMethod.POST)
 	public String replyComment(Model model, @ModelAttribute Post reply, @PathVariable("postID") String postID, @ModelAttribute Thread thread, @PathVariable("schoolID")String id, @PathVariable("topic")String topic) {
 		//model.addAttribute("reply", new Post());
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		java.util.Date date = new java.util.Date();
 		Post originalPost = postRepository.findById(postID);
 		List<Post> posts = originalPost.getThread().getPosts();

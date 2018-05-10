@@ -41,7 +41,7 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 				.authorities("ROLE_USER", "ROLE_ADMIN");
 	}
 
-	@Override
+	/*@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.antMatcher("/**")
 				.authorizeRequests()
@@ -67,15 +67,15 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 			.and()
 				.headers().frameOptions().disable()
 				;
-	}
+	}*/
 
-	/*
+	
 	@Override
-	public void configure(AuthenticationBuilder auth) throws Exception {
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.ldapAuthentication()
-				.userDnPatterns("uid={0},ou=users")
-				.groupSearchBase("ou=groups")
+				.userDnPatterns("uid={0},ou=Student")
+				.groupSearchBase("ou=Student")
 				.contextSource(contextSource())
 				.authoritiesMapper(setAuthorities())
 				.passwordCompare()
@@ -85,7 +85,7 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 	}
 	
 	//Embedded LDAP server
-	@Override
+	/*@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.ldapAuthentication()
@@ -101,7 +101,7 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 				.passwordAttribute("userPassword")
 				.and()
 				.passwordEncoder(passwordEncoder());
-	}
+	}*/
 
 	private PasswordEncoder passwordEncoder() {
 		final LdapShaPasswordEncoder sha = new LdapShaPasswordEncoder();
@@ -113,7 +113,7 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 
 			@Override
 			public boolean matches(CharSequence rawPassword, String encodedPassword) {
-				return sha.isPasswordValid(encodedPassword, rawPassword.toString());
+				return sha.isPasswordValid(encodedPassword, rawPassword.toString(), null);
 			}
 		};
 	}
@@ -127,12 +127,12 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 
 	private LdapContextSource contextSource() {
 		LdapContextSource contextSource = new LdapContextSource();
-		contextSource.setUrl("ldap://");
-		contextSource.setBase("dc=school, dc=edu");
-		contextSource.setUserDn("cn=admin, dc=school, dc=edu");
-		contextSource.setPassword("somePasswurd");
+		contextSource.setUrl("ldap://localhost");
+		contextSource.setBase("dc=college-collective, dc=com");
+		contextSource.setUserDn("cn=root, dc=college-collective, dc=com");
+		contextSource.setPassword("!Univega1986");
 		contextSource.afterPropertiesSet();
 		return contextSource;
 	}
-	*/
+	
 }
