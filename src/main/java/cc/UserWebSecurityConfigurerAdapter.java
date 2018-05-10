@@ -30,7 +30,7 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 		web.ignoring().antMatchers("/webjars/**", "/webjarsjs/**");
 	}
 
-	@Autowired
+	/*@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder authenticationMgr) throws Exception {
 		authenticationMgr
 			.inMemoryAuthentication()
@@ -39,9 +39,9 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 				.and()
 				.withUser("admin").password("adminpassword")
 				.authorities("ROLE_USER", "ROLE_ADMIN");
-	}
+	}*/
 
-	/*@Override
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.antMatcher("/**")
 				.authorizeRequests()
@@ -67,7 +67,7 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 			.and()
 				.headers().frameOptions().disable()
 				;
-	}*/
+	}
 
 	
 	@Override
