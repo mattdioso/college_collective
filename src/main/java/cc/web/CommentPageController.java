@@ -70,9 +70,10 @@ public class CommentPageController {
 		
 		//model.addAttribute("topic", topicRepository.findByTopicName(topic));
 		java.util.Date date = new java.util.Date();
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		School school = schoolRepository.findOne(id);
 		Post post = new Post();
-		User user = userRepository.findByUserName("mattdioso");
+		User user = userRepository.findByUserName(userDetails.getUsername());
 		Topic selectedTopic = topicRepository.findByTopicName(topic);
 		Thread thread = new Thread();
 		List<Post> posts = new ArrayList<Post>();
@@ -112,13 +113,14 @@ public class CommentPageController {
 	public String replyComment(Model model, @ModelAttribute Post reply, @PathVariable("postID") String postID, @ModelAttribute Thread thread, @PathVariable("schoolID")String id, @PathVariable("topic")String topic) {
 		//model.addAttribute("reply", new Post());
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println(userDetails.getUsername());
 		java.util.Date date = new java.util.Date();
 		Post originalPost = postRepository.findById(postID);
 		List<Post> posts = originalPost.getThread().getPosts();
 		Post postReply = new Post();
 		postReply.setThread(originalPost.getThread());
-		postReply.setCreatedBy("mattdioso");
-		postReply.setUser(userRepository.findByUserName("mattdioso"));
+		postReply.setCreatedBy(userDetails.getUsername());
+		postReply.setUser(userRepository.findByUserName(userDetails.getUsername()));
 		postReply.setDateCreated(new java.sql.Date(date.getTime()));
 		postReply.setContent(reply.getContent());
 		postReply.setPostName("reply");
