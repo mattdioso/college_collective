@@ -19,6 +19,9 @@ import cc.model.VerificationToken;
 import cc.model.User;
 
 import cc.web.vo.UserVO;
+import cc.web.vo.ChangePasswordVO;
+
+import cc.service.LdapService;
 
 import cc.web.error.UserAlreadyExistException;
 
@@ -48,6 +51,9 @@ public class UserService implements IUserService {
 	@Autowired
 	private SessionRegistry sessionRegistry;
 
+	@Autowired
+	private LdapService ldapService;
+
 	public static final String TOKEN_INVALID = "invalidToken";
 
 	public static final String TOKEN_EXPIRED = "expired";
@@ -64,6 +70,7 @@ public class UserService implements IUserService {
 		user.setUsername(userVo.getUserName());
 		user.setUserSchool(userVo.getUserSchool());
 		user.setUserEmail(userVo.getUserEmail());
+		ldapService.createNewUser(userVo);
 		return userRepository.save(user);
 	}
 
@@ -141,8 +148,9 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void changeUserPassword(final User user, final String password) {
+	public void changeUserPassword(ChangePasswordVO changePasswordVO) {
 		//add implementation for change LDAP password
+		ldapService.changeUserPassword(changePasswordVO);
 	}
 
 	@Override

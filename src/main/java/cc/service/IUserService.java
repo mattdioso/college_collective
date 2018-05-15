@@ -5,6 +5,7 @@ import java.util.List;
 
 import cc.model.User;
 import cc.web.vo.UserVO;
+import cc.web.vo.ChangePasswordVO;
 import cc.model.PasswordResetToken;
 import cc.model.VerificationToken;
 
@@ -34,7 +35,7 @@ public interface IUserService {
 
 	User getUserById(String id);
 
-	void changeUserPassword(User user, String password);
+	void changeUserPassword(ChangePasswordVO changePasswordVO);
 
 	boolean checkIfValidOldPassword(User user, String password);
 

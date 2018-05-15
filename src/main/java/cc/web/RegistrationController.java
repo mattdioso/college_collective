@@ -16,13 +16,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import javax.servlet.http.HttpServletRequest;
 
-import cc.service.IUserService;
+import cc.service.UserService;
+
+import cc.web.util.GenericResponse;
 
 import org.springframework.validation.Errors;
 import org.springframework.web.servlet.ModelAndView;
 
 import cc.model.User;
 import cc.web.vo.UserVO;
+import cc.web.vo.ChangePasswordVO;
 
 import javax.validation.Valid;
 
@@ -30,24 +33,26 @@ import javax.validation.Valid;
 public class RegistrationController {
 
 	@Autowired
-	private IUserService userService;
+	private UserService userService;
 
-	@RequestMapping(value="/user/registration", method=RequestMethod.GET)
+	@RequestMapping(value="/registration", method=RequestMethod.GET)
 	public String showRegistrationForm(final Model model) {
 		final UserVO userVo = new UserVO();
 		model.addAttribute("user", userVo);
 		return "registration";
 	}
 
-	@RequestMapping(value="/user/registration", method=RequestMethod.POST)
-	public ModelAndView registerUserAccount(@ModelAttribute("user") @Valid UserVO userVo, HttpServletRequest request, Errors errors) {
+	@RequestMapping(value="/registration", method=RequestMethod.POST)
+	public GenericResponse registerUserAccount(@ModelAttribute("user") @Valid UserVO userVo, HttpServletRequest request, Errors errors) {
 
 		final User registered = userService.registerNewUserAccount(userVo);
 
-		if (registered == null) {
-			return new ModelAndView("registration", "user", userVo);
-		}
+		return new GenericResponse("success");
+	}
 
-		return new ModelAndView("successRegister", "user", userVo);
+	@RequestMapping(value="/registration?change_password", method=RequestMethod.POST)
+	public String changePassword(@ModelAttribute("changePassword") ChangePasswordVO changepasswordVo) {
+		userService.changeUserPassword(changepasswordVo);
+		return "redirect:/home";
 	}
 }
