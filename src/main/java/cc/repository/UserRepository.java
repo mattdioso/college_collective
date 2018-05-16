@@ -10,4 +10,5 @@ import cc.model.User;
 public interface UserRepository extends PagingAndSortingRepository<User, String> {
 	public List<User> findAllByOrderByUserName();
 	public User findByUserName(String userName);
+	public User findByUserEmail(String email);
 }

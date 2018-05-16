@@ -2,6 +2,7 @@ package cc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -19,6 +20,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.authentication.encoding.LdapShaPasswordEncoder;
 import org.springframework.ldap.core.support.LdapContextSource;
 import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
+
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 
 
 @Configuration
@@ -103,7 +107,8 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 				.passwordEncoder(passwordEncoder());
 	}*/
 
-	private PasswordEncoder passwordEncoder() {
+	@Bean
+	public PasswordEncoder passwordEncoder() {
 		final LdapShaPasswordEncoder sha = new LdapShaPasswordEncoder();
 		return new PasswordEncoder() {
 			@Override
@@ -135,4 +140,8 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 		return contextSource;
 	}
 	
+	@Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
+    }
 }

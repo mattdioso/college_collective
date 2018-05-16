@@ -19,7 +19,7 @@ import cc.model.School;
 public class SchoolController {	
 
 	@Autowired
-	SchoolRepository schoolRepository;
+	private SchoolRepository schoolRepository;
 
 	@RequestMapping(value = "/school/{id}", method = RequestMethod.GET)
 	public String changeSchools(Model model, @PathVariable("id") String id) {
