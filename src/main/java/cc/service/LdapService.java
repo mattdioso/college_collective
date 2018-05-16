@@ -79,14 +79,14 @@ public class LdapService {
 			return;
 		}
 
-		String encodedInput = encode.encode((CharSequence)changePasswordVo.getPassword());
+		String encodedInput = encode.encode((CharSequence)changePasswordVo.getOldPassword());
 
 		if (new String((byte[])user.getObjectAttribute("userPassword")).compareTo(encodedInput)!=0) {
 			System.out.println("Bad Passwords");
 			return;
 		}
 
-		String encodedNewPassword = encode.encode((CharSequence)changePasswordVo.getNewPassword());
+		String encodedNewPassword = encode.encode((CharSequence)changePasswordVo.getPassword());
 		DirContextAdapter mod = new DirContextAdapter("uid=" + changePasswordVo.getUserName() + ",ou=Student");
 		BasicAttribute attr = new BasicAttribute("userPassword", encodedNewPassword);
 		ModificationItem[] modArray = new ModificationItem[1];

@@ -16,7 +16,7 @@ public class ChangePasswordVO {
 	protected String userEmail;
 
 	@NotNull
-	protected String newPassword;
+	protected String oldPassword;
 
 	@NotNull
 	protected String password;
@@ -56,11 +56,11 @@ public class ChangePasswordVO {
 		this.matchingPassword=matchingPassword;
 	}
 
-	public void setNewPassword(String newPassword) {
-		this.newPassword = newPassword;
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
 	}
 
-	public String getNewPassword() {
-		return newPassword;
+	public String getOldPassword() {
+		return oldPassword;
 	}
 }
