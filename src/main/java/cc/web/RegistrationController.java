@@ -40,7 +40,7 @@ public class RegistrationController {
 	@Autowired
 	private SchoolRepository schoolRepository;
 
-	@RequestMapping(value="/registration", method=RequestMethod.GET)
+	@RequestMapping(value="/registernewuser", method=RequestMethod.GET)
 	public String showRegistrationForm(final Model model) {
 		final UserVO userVo = new UserVO();
 		model.addAttribute("schools", schoolRepository.findAllByOrderBySchoolName());
@@ -65,11 +65,11 @@ public class RegistrationController {
 	}
 
 	@RequestMapping(value="/registration/register", method=RequestMethod.POST)
-	public GenericResponse registerUserAccount(@ModelAttribute("user") @Valid UserVO userVo, HttpServletRequest request, Errors errors) {
+	public String registerUserAccount(@ModelAttribute("user") @Valid UserVO userVo, HttpServletRequest request, Errors errors) {
 
 		final User registered = userService.registerNewUserAccount(userVo);
 
-		return new GenericResponse("success");
+		return "redirect:/home";
 	}
 
 	@RequestMapping(value="/registration/change_password", method=RequestMethod.POST)
