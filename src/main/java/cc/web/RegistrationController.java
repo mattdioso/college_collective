@@ -74,12 +74,12 @@ public class RegistrationController {
 	public String registerUserAccount(@ModelAttribute("user") @Valid UserVO userVo, @RequestParam("file") MultipartFile file, HttpServletRequest request, Errors errors) {
 
 		final User registered = userService.registerNewUserAccount(userVo);
-		filesystem.store(file);
+		//filesystem.store(file);
 		return "redirect:/";
 	}
 
 	@RequestMapping(value="/registration/change_password", method=RequestMethod.POST)
-	public String changePassword(@ModelAttribute("changePassword") ChangePasswordVO changepasswordVo) {
+	public String changePassword(@ModelAttribute("changePassword") @Valid ChangePasswordVO changepasswordVo) {
 		userService.changeUserPassword(changepasswordVo);
 		return "redirect:/";
 	}

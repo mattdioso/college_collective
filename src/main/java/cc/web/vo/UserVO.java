@@ -5,10 +5,12 @@ import javax.validation.constraints.NotNull;
 import cc.service.ValidEmail;
 import cc.service.PasswordMatches;
 import cc.service.ValidPassword;
+import cc.service.ValidUsername;
 
 @PasswordMatches
 public class UserVO {
 
+	@ValidUsername
 	@NotNull
 	protected String userName;
 
