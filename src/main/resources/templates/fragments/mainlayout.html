@@ -45,15 +45,15 @@
 	  						<li><a href="/News" style="color:rgb(247,148,29);">News</a></li>
 	  					</ul>
 	  				</li>
-  					<li data-sec-authorize="isAnonymous()"><a href="/login" data-th-href="@{/login}" style="float: right;">Login</a></li>
-  					<li data-sec-authorize="isAuthenticated()"> <!-- "hasRole('ROLE_USER')"> -->
+  					<li sec:authorize="isAnonymous()"><a href="/login" data-th-href="@{/login}" style="float: right;">Login</a></li>
+  					<li sec:authorize="isAuthenticated()"> <!-- "hasRole('ROLE_USER')"> -->
   						<form data-th-action="@{/logout}" method="POST">
   							<input type="hidden" data-th-name="${_csrf.parameterName}" data-th-value="${_csrf.token}" />
-  							<a onclick="$(this).closest('form').submit()"><span class="glyphicon glyphicon-log-out"></span>Logout</a> (<span data-sec-authentication="name"></span>)
+  							<a onclick="$(this).closest('form').submit()">Logout</a> <li sec:authorize="isAuthenticated()">(<a href="/profile" data-th-href="@{'/profile/' + ${#authentication.name}}"><span data-sec-authentication="name"></span></a>)</li>
   						</form>
   					</li>
 
-  					<li><a href="/../registernewuser" data-th-href="@{/registernewuser}">Register</a></li>
+  					<li sec:authorize="isAnonymous()"><a href="/../registernewuser" data-th-href="@{/registernewuser}">Register</a></li>
 				</ul>
 
 				<div class="col-sm-3 col-md-3 pull-right">

@@ -11,15 +11,15 @@
 		<div class="col-xs-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">Profile</div>
-				<div class="panel-body">
+				<div class="panel-body" data-th-object="${user}">
 					<div class="row">
-						<p th:text="'Name: ' + ${user.name}">Name: </p>
+						<p th:text="'Name: ' + *{userName}">Name: </p>
 					</div>
 					<div class="row">
-						<p th:text="'College: ' + ${user.college}">College: </p>
+						<p th:text="'College: ' + *{userSchool}">College: </p>
 					</div>
 					<div class="row">
-						<p th:text="'Contact: ' + ${user.contact}">Contact: </p>
+						<p th:text="'Contact: ' + *{userEmail}">Contact: </p>
 					</div>
 				</div>
 			</div>
@@ -27,11 +27,11 @@
 
 		<div id="profile" class="col-xs-6" style="z-index: 1000;position: relative;display: inline-block;top: -350px;">
 			<div id="profilePicture" class="row">
-				<img src="pics/mattdioso.jpg" style="height: 300px;width: 330px;float: right;">
+				<img src="/images/mattdioso.jpg" data-th-src="@{/images/mattdioso.jpg}" style="height: 300px;width: 330px;float: right;">
 			</div>
-			<div class="row" id="profileInfo">
-				<p th:text="${user.name}" style="margin-top: 20px;font-size: 20px;">Matt Dioso</p>
-				<p th:text="${user.school}" style="margin-bottom: 90px; margin-top: 10px; font-size: 20px;">Seattle University</p>
+			<div class="row" id="profileInfo" data-th-object="${user}">
+				<p th:text="*{userName}" style="margin-top: 20px;font-size: 20px;">Matt Dioso</p>
+				<p th:text="*{userSchool}" style="margin-bottom: 90px; margin-top: 10px; font-size: 20px;">Seattle University</p>
 			</div>
 			<div class="row">
 				<button id="messageButton" type="button" class="btn">Message</button>

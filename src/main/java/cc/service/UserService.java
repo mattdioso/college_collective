@@ -67,7 +67,7 @@ public class UserService implements IUserService {
 
 		final User user = new User();
 
-		user.setUsername(userVo.getUserName());
+		user.setUserName(userVo.getUserName());
 		user.setUserSchool(userVo.getUserSchool());
 		user.setUserEmail(userVo.getUserEmail());
 		ldapService.createNewUser(userVo);

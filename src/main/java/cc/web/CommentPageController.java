@@ -94,7 +94,7 @@ public class CommentPageController {
 		selectedTopic.setThreads(threads);
 
 		post.setThread(thread);
-		post.setCreatedBy(user.getUsername());
+		post.setCreatedBy(user.getUserName());
 		post.setUser(user);
 		post.setDateCreated(new java.sql.Date(date.getTime()));
 		post.setContent(newPost.getContent());

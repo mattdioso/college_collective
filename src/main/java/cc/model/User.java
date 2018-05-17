@@ -49,11 +49,11 @@ public class User extends BaseObject {
 		this.userEmail=userEmail;
 	}
 
-	public void setUsername(String name) {
+	public void setUserName(String name) {
 		this.userName=name;
 	}
 
-	public String getUsername() {
+	public String getUserName() {
 		return userName;
 	}
 

@@ -92,7 +92,7 @@ public class DataInitializer implements InitializingBean {
 		SecurityContextHolder.setContext(createSecurityContext());
 		User mattdioso = new User();
 		mattdioso.setId(UUID.randomUUID().toString());
-		mattdioso.setUsername("mattdioso");
+		mattdioso.setUserName("mattdioso");
 		mattdioso.setUserSchool("Seattle University");
 		mattdioso.setUserEmail("dioso.matt@gmail.com");
 		userRepository.save(mattdioso);
