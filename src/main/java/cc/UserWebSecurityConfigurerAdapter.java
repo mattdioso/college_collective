@@ -23,6 +23,7 @@ import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper
 
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
+import org.springframework.http.HttpMethod;
 
 
 @Configuration
@@ -49,9 +50,9 @@ public class UserWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapt
 	protected void configure(HttpSecurity http) throws Exception {
 		http.antMatcher("/**")
 				.authorizeRequests()
-				.antMatchers("/**")
+				.antMatchers(HttpMethod.GET, "/**").permitAll()//.anyRequest().authenticated()
 				//.antMatchers("/", "/home**", "/login**", "/resources/**", "/templates/**", "/js/**", "/static/**", "/webjars/**", "/css/**", "/images/**", "/schools/**")
-				.permitAll()//.anyRequest()//.authenticated()
+				.antMatchers(HttpMethod.POST, "/**").authenticated()
 			.and()
 				.formLogin()
 				.loginPage("/login")

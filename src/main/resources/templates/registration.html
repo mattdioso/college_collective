@@ -11,7 +11,7 @@
 				<h1 class="panel-title">New User Registration</h1>
 			</div>
 			<div class="panel-body">
-				<form action="/registration/register" data-th-action="@{/registration?register}" data-th-object="${user}" method="POST" enctype="utf8">
+				<form action="/registration/register" data-th-action="@{/registration/register}" data-th-object="${user}" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>User Name</label>
 						<input data-th-field="*{userName}" />
@@ -28,6 +28,11 @@
 						<label>Email</label>
 						<input data-th-field="*{userEmail}" />
 						<!-- <p data-th-each="error : ${#fields.errors('userEmail')" data-th-text="${error}"></p> -->
+					</div>
+
+					<div class="form-group">
+						<label>Profile Picture</label>
+						<input type="file" name="file" data-th-object="${file}"/>
 					</div>
 
 					<div class="form-group">

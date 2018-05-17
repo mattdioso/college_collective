@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import cc.service.ValidEmail;
 import cc.service.PasswordMatches;
+import cc.service.ValidPassword;
 
 @PasswordMatches
 public class UserVO {
@@ -18,6 +19,7 @@ public class UserVO {
 	@NotNull
 	protected String userEmail;
 
+	@ValidPassword
 	@NotNull
 	protected String password;
 
