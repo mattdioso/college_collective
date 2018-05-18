@@ -138,7 +138,7 @@
 								<div class="col-md-2 col-sm-2 hidden-xs">
 									<figure class="thumbnail">
 										<img class="img-responsive" src="../../images/mattdioso.jpg" data-th-src="@{/images/mattdioso.jpg}" style="width:84px;height:84px;margin:0;" />
-										<figcaption class="text-center" data-th-text="*{user.getUsername()}" />        <!-- ${post.user.getUsername()}" /> -->
+										<figcaption class="text-center" data-th-text="*{user.getUserName()}" />        <!-- ${post.user.getUsername()}" /> -->
 									</figure>
 								</div>
 
@@ -146,7 +146,7 @@
 									<div class="panel panel-default arrow left">
 										<div class="panel-body">
 											<header class="text-left">
-												<div class="comment-user" data-th-text="*{user.getUsername()}"><i class="fa fa-user"></i>That Guy</div>
+												<div class="comment-user" data-th-text="*{user.getUserName()}"><i class="fa fa-user"></i>That Guy</div>
 												<time class="comment-date" datetime="04-03-2018 3:21" data-th-text="*{dateCreated}"><i class="fa fa-clock-o"></i>Mar 4, 2018</time>
 											</header>
 											<div class="comment-post" data-th-text="*{content}"></div>
@@ -169,7 +169,7 @@
 								<div class="col-md-2 col-sm-2 hidden-xs">
 									<figure class="thumbnail">
 										<img class="img-responsive" src="../../images/mattdioso.jpg" data-th-src="@{/images/mattdioso.jpg}" style="width:84px;height:84px;margin:0;" />
-										<figcaption class="text-center" data-th-text="${post.user.getUsername()}" />        <!-- ${post.user.getUsername()}" /> -->
+										<figcaption class="text-center" data-th-text="${post.user.getUserName()}" />        <!-- ${post.user.getUsername()}" /> -->
 									</figure>
 								</div>
 
@@ -177,7 +177,7 @@
 									<div class="panel panel-default arrow left">
 										<div class="panel-body">
 											<header class="text-left">
-												<div class="comment-user" data-th-text="${post.user.getUsername()}"><i class="fa fa-user"></i>That Guy</div>
+												<div class="comment-user" data-th-text="${post.user.getUserName()}"><i class="fa fa-user"></i>That Guy</div>
 												<time class="comment-date" datetime="04-03-2018 3:21" data-th-text="${post.dateCreated}"><i class="fa fa-clock-o"></i>Mar 4, 2018</time>
 											</header>
 											<div class="comment-post" data-th-text="${post.content}"></div>
