@@ -5,7 +5,7 @@
 
 <body>
 	<div data-th-replace="fragments/mainlayout :: bodyHeader"></div>
-	<div class="container island">
+	<div class="container island" style="width:50%;">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title" data-th-text="#{login.title}">Login</h3>
@@ -39,8 +39,7 @@
 
 		<div data-sec-authorize="isFullyAuthenticated()" class="panel-body">
 			<div class="panel-group alert alert-info">
-				<p>You are already logged in</p>
-				<!-- <span data-th-text="#{login.login_confirmation(${#authentication.name})}"></span> -->
+				<span data-th-text="#{login.login_confirmation(${#authentication.name})}"></span> 
 			</div>
 
 			<div class="panel-group">

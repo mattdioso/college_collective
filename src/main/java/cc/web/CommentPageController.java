@@ -12,6 +12,8 @@ import cc.repository.ThreadRepository;
 import cc.repository.PostRepository;
 import cc.repository.UserRepository;
 
+import cc.web.vo.PostVO;
+
 import java.util.List;
 import java.util.UUID;
 import java.util.ArrayList;
@@ -60,13 +62,13 @@ public class CommentPageController {
 		//model.addAttribute("topic", topicRepository.findByTopicName(topic));
 		//model.addAttribute("topics", topicRepository.findAllBySchoolID(school));
 		model.addAttribute("threads", threadRepository.findAllByOrderByDateCreatedDesc());
-		model.addAttribute("newPost", new Post());
+		model.addAttribute("newPost", new PostVO());
 		model.addAttribute("posts", postRepository.findAllByOrderByDateCreatedDesc());
 		return topic;
 	}
 
 	@RequestMapping(value="school/{schoolID}/{topic}", method=RequestMethod.POST)
-	public String postComment(Model model, @ModelAttribute Post newPost, @PathVariable("schoolID") String id, @PathVariable("topic") String topic) {
+	public String postComment(Model model, @ModelAttribute("newPost") PostVO newPost, @PathVariable("schoolID") String id, @PathVariable("topic") String topic) {
 		
 		//model.addAttribute("topic", topicRepository.findByTopicName(topic));
 		java.util.Date date = new java.util.Date();
@@ -110,7 +112,7 @@ public class CommentPageController {
 	
 	
 	@RequestMapping(value="school/{schoolID}/{topic}/{postID}/reply", method=RequestMethod.POST)
-	public String replyComment(Model model, @ModelAttribute Post reply, @PathVariable("postID") String postID, @ModelAttribute Thread thread, @PathVariable("schoolID")String id, @PathVariable("topic")String topic) {
+	public String replyComment(Model model, @ModelAttribute("newPost") PostVO reply, @PathVariable("postID") String postID, @ModelAttribute Thread thread, @PathVariable("schoolID")String id, @PathVariable("topic")String topic) {
 		//model.addAttribute("reply", new Post());
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		System.out.println(userDetails.getUsername());

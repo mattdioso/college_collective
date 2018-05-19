@@ -6,7 +6,18 @@ import java.util.regex.Pattern;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import cc.repository.UserRepository;
+
+import cc.model.User;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+
 public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
+
+	@Autowired
+	private UserRepository userRepository;
+
 	private Pattern pattern;
 	private Matcher matcher;
 

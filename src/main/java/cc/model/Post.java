@@ -37,7 +37,6 @@ public class Post extends AuditObject {
 	@ManyToOne
 	private User user;
 
-	
 	@Lob
 	private String content;
 

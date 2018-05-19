@@ -75,12 +75,12 @@ public class RegistrationController {
 
 		final User registered = userService.registerNewUserAccount(userVo);
 		//filesystem.store(file);
-		return "redirect:/";
+		return "redirect:/login";
 	}
 
 	@RequestMapping(value="/registration/change_password", method=RequestMethod.POST)
 	public String changePassword(@ModelAttribute("changePassword") @Valid ChangePasswordVO changepasswordVo) {
 		userService.changeUserPassword(changepasswordVo);
-		return "redirect:/";
+		return "redirect:/login";
 	}
 }
