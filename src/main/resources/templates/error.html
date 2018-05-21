@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="global desktop">
+
+<head data-th-replace="fragments/mainlayout :: head('Error')" />
+
+<body>
+	<div data-th-replace = "fragments/mainlayout :: bodyHeader"></div>
+	<div>
+		<div data-th-unless="${exception==null}" data-th-text="${bodyOfResponse}"></div>
+
+		<div data-th-unless="${exception==null}" style = "padding: 20px;">
+			<div data-th-utext="'Failed URL: ' + ${url}"></div>
+			<div data-th-utext="'Exception name: ' + ${exception.class.name}"></div>
+			<div data-th-utext="'Exception message: ' + ${exception.message}"></div>
+		</div>
+	</div>
+</body>
+
+</html>
