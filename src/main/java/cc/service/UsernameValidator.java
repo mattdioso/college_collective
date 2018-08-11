@@ -2,6 +2,7 @@ package cc.service;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import org.hibernate.exception.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +18,7 @@ public class UsernameValidator implements ConstraintValidator<ValidUsername, Str
 	public void initialize(ValidUsername constraintAnnotation) {}
 
 	@Override
-	public boolean isValid(String userName, ConstraintValidatorContext context) {
+	public boolean isValid(String userName, ConstraintValidatorContext context) throws ConstraintViolationException {
 		return (validateUserName(userName));
 	}
 
